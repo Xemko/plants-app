@@ -1,4 +1,4 @@
-const plantService = require('../services/plantService');
+const plantService = require('../services/plant.service');
 
 const getPlants = async (req, res) => {
     const plants = await plantService.getPlants();
