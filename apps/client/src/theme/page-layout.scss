@@ -1,0 +1,17 @@
+.page-inner-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.buttons-container {
+  flex-direction: row;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    margin-top: auto;
+    padding-bottom: 2.25rem;
+  }
+}
