@@ -1,0 +1,17 @@
+{
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "calendar": {
+    "title": "Calendar"
+  },
+  "signIn": {
+    "title": "Sign In",
+    "description": "Enter your phone number to continue to the {{appName}}",
+    "phoneNumber": {
+      "label": "Phone Number",
+      "errorText": "Please enter a valid phone number"
+    },
+    "next": "Next"
+  }
+}

@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{ 'signIn.title' | transloco }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding-horizontal">
+  <ion-header collapse="condense" class="ion-margin-bottom">
+    <ion-toolbar>
+      <ion-title size="large">{{ 'signIn.title' | transloco }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form [formGroup]="form">
+    <div class="page-inner-container">
+      <p>{{ 'signIn.description' | transloco: {appName} }}</p>
+
+      <ion-item>
+        <ion-input
+          [label]="'signIn.phoneNumber.label' | transloco"
+          [errorText]="'signIn.phoneNumber.errorText' | transloco"
+          formControlName="phoneNumber"
+          labelPlacement="stacked"
+          aria-label="Danger input"
+        ></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="buttons-container">
+      <ion-button
+        expand="block"
+        [disabled]="!form.valid"
+      >{{ 'signIn.next' | transloco }}</ion-button>
+    </div>
+  </form>
+</ion-content>
