@@ -1,4 +1,4 @@
-const mainService = require('../services/mainService');
+const mainService = require('../services/main.service');
 
 const signIn = async (req, res) => {
     // const plants = await mainService.signIn();
