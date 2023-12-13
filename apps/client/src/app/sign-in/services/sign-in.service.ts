@@ -12,10 +12,14 @@ export class SignInService {
 
   submit(value: SignInFormFields): Observable<SignInResponse> {
     return this.authService.signIn(value).pipe(
-      exhaustMap(response => from(this.router.navigateByUrl('/app/dashboard')).pipe(
+      exhaustMap(response => this.navigateToTheApp().pipe(
         map(() => response)
       ))
     );
+  }
+
+  private navigateToTheApp(): Observable<boolean> {
+    return from(this.router.navigateByUrl('/app/dashboard'));
   }
 
 }
