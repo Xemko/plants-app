@@ -11,7 +11,11 @@
     </ion-toolbar>
   </ion-header>
 
-  <form [formGroup]="form" class="page-inner-container">
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    class="page-inner-container"
+  >
     <div class="app-logo-container ion-margin-vertical">
       <img src="#" alt="{{appName}} logo" class="app-logo">
     </div>
@@ -33,6 +37,7 @@
     <div class="buttons-container">
       <ion-button
         expand="block"
+        type="submit"
         [disabled]="!form.valid"
       >{{ 'signIn.next' | transloco }}</ion-button>
     </div>

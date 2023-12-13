@@ -4,6 +4,7 @@ import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonTitle, IonToolb
 import { TranslocoPipe } from '@ngneat/transloco';
 import { ENVIRONMENT } from '../common/models/environment.model';
 import { SignInFormFields } from './models/sign-in.interface';
+import { SignInService } from './services/sign-in.service';
 import { signInPhoneNumberValidator } from './validators/sign-in.validators';
 
 @Component({
@@ -11,13 +12,22 @@ import { signInPhoneNumberValidator } from './validators/sign-in.validators';
   templateUrl: 'sign-in.page.html',
   styleUrls: [ 'sign-in.page.scss' ],
   standalone: true,
-  imports: [ IonHeader, IonToolbar, IonTitle, IonContent, TranslocoPipe, ReactiveFormsModule, IonInput, IonItem, IonButton ]
+  imports: [ IonHeader, IonToolbar, IonTitle, IonContent, TranslocoPipe, ReactiveFormsModule, IonInput, IonItem, IonButton ],
+  providers: [ SignInService ]
 })
 export class SignInPage {
   private environment = inject(ENVIRONMENT);
+  private signInService = inject(SignInService);
 
   public form: FormGroup = new FormGroup({
     phoneNumber: new FormControl<SignInFormFields['phoneNumber']>('', [ signInPhoneNumberValidator() ]),
   });
   public appName: string = this.environment.appName;
+
+  submit(): void {
+    if (this.form.valid) {
+      this.signInService.submit(this.form.value).subscribe();
+    }
+  }
+
 }
