@@ -4,8 +4,10 @@ import { signInPhoneNumberValidator } from './sign-in.validators';
 describe('signInPhoneNumberValidator', () => {
 
   it('should validate - has error required', () => {
+    // GIVEN
     const control = new FormControl('', [signInPhoneNumberValidator()]);
 
+    // THEN
     expect(control.errors).toEqual({ required: true });
   });
 
