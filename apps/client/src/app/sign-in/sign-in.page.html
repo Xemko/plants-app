@@ -11,8 +11,12 @@
     </ion-toolbar>
   </ion-header>
 
-  <form [formGroup]="form">
-    <div class="page-inner-container">
+  <form [formGroup]="form" class="page-inner-container">
+    <div class="app-logo-container ion-margin-vertical">
+      <img src="#" alt="{{appName}} logo" class="app-logo">
+    </div>
+
+    <div class="ion-text-center ion-margin-bottom">
       <p>{{ 'signIn.description' | transloco: {appName} }}</p>
 
       <ion-item>

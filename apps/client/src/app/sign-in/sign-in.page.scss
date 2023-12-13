@@ -1,0 +1,14 @@
+.app-logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  img.app-logo {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+    border-radius: 50%;
+  }
+}
