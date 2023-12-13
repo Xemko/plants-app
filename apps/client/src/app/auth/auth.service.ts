@@ -1,0 +1,40 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { SignInFormFields, SignInResponse } from '../sign-in/models/sign-in.interface';
+
+@Injectable({ providedIn: 'root' })
+export class AuthService {
+  private http = inject(HttpClient);
+  private storage = inject(Storage);
+
+  async getAuthToken(): Promise<string> {
+    return await this.storage.get('authToken');
+  }
+
+  async setAuthToken(authToken: string): Promise<void> {
+    await this.storage.set('authToken', authToken);
+  }
+
+  signIn(value: SignInFormFields): Observable<SignInResponse> {
+    return this.http.post<SignInResponse>('/api/sign-in', value).pipe(
+      tap(async response => {
+        this.validateSubmitResponse(response);
+        await this.setAuthToken(response.authToken as string);
+      }),
+      catchError(response => throwError(() => this.extractResponseError(response))),
+    );
+  }
+
+  private validateSubmitResponse(response: SignInResponse): void {
+    // TODO implement when server is ready
+  }
+
+  private extractResponseError(response: HttpErrorResponse) {
+    // TODO implement when server is ready
+    return response.error;
+  }
+
+}
