@@ -7,9 +7,7 @@ export const signInPhoneNumberValidator = (): ValidatorFn => {
       return { required: true };
     }
 
-    const value = control.value;
-
-    if (!value.startsWith('0')) {
+    if (!/^05[\d+]{8}$/.test(control.value)) {
       return { errorText: true };
     }
 
