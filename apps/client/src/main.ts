@@ -1,4 +1,4 @@
-import { enableProdMode, isDevMode } from '@angular/core';
+import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
@@ -9,8 +9,8 @@ import { provideTransloco } from '@ngneat/transloco';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { ENVIRONMENT } from './app/common/models/environment.model';
+import { translocoProviderOptions } from './app/common/transloco/transloco.config';
 import { environment } from './environments/environment';
-import { translocoProviderOptions } from './app/common/services/transloco-loader';
 
 if (environment.production) {
   enableProdMode();
