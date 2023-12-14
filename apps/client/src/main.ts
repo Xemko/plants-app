@@ -1,9 +1,10 @@
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import { IonicStorageModule } from '@ionic/storage-angular';
 import { provideTransloco } from '@ngneat/transloco';
 
 import { routes } from './app/app.routes';
@@ -26,5 +27,9 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
     provideHttpClient(),
     provideTransloco(translocoProviderOptions),
+    importProvidersFrom(IonicStorageModule.forRoot({
+      name: '__plantsApp',
+      storeName: '_plantsApp',
+    })),
   ],
 });

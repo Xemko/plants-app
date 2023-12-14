@@ -11,7 +11,11 @@
     </ion-toolbar>
   </ion-header>
 
-  <form [formGroup]="form" class="page-inner-container">
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    class="page-inner-container"
+  >
     <div class="app-logo-container ion-margin-vertical">
       <img src="#" alt="{{appName}} logo" class="app-logo">
     </div>
@@ -22,10 +26,11 @@
       <ion-item>
         <ion-input
           [label]="'signIn.phoneNumber.label' | transloco"
-          [errorText]="'signIn.phoneNumber.errorText' | transloco"
+          [errorText]="form.get('phoneNumber')?.errors | firstKey | transloco"
           formControlName="phoneNumber"
           labelPlacement="stacked"
           aria-label="Danger input"
+          maxlength="10"
         ></ion-input>
       </ion-item>
     </div>
@@ -33,6 +38,7 @@
     <div class="buttons-container">
       <ion-button
         expand="block"
+        type="submit"
         [disabled]="!form.valid"
       >{{ 'signIn.next' | transloco }}</ion-button>
     </div>
