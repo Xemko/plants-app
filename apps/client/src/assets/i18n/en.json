@@ -10,7 +10,8 @@
     "description": "Enter your phone number to continue to the {{appName}}",
     "phoneNumber": {
       "label": "Phone Number",
-      "errorText": "Please enter a valid phone number"
+      "invalidErrorText": "Please enter a valid phone number",
+      "cannotFindErrorText": "Can’t find your account"
     },
     "next": "Next"
   }
