@@ -58,7 +58,7 @@ describe('SignInService', () => {
       });
     });
 
-    it('should redirect to the /app/dashboard route when response is valid', (done) => {
+    it('should redirect to the /app route when response is valid', (done) => {
       // GIVEN
       const expectedResponse: SignInResponse = {
         authToken: 'abc',
@@ -71,7 +71,7 @@ describe('SignInService', () => {
       service.submit({ phoneNumber: '0528565742' }).subscribe({
         next: () => {
           // THEN
-          expect(navigateByUrlSpy).toHaveBeenCalledOnceWith('/app/dashboard');
+          expect(navigateByUrlSpy).toHaveBeenCalledOnceWith('/app');
           done();
         },
         error: fail,
