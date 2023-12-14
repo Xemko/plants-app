@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
-import { SignInResponse } from '../models/sign-in.interface';
+import { SignInResponse, SignInResponseError } from '../models/sign-in.interface';
 import { SignInService } from './sign-in.service';
 
 describe('SignInService', () => {
@@ -12,7 +12,7 @@ describe('SignInService', () => {
 
   let authServiceSpy: jasmine.SpyObj<AuthService>;
 
-  beforeEach((() => {
+  beforeEach(() => {
     authServiceSpy = jasmine.createSpyObj('AuthService', [ 'signIn' ]);
 
     TestBed.configureTestingModule({
@@ -30,7 +30,7 @@ describe('SignInService', () => {
 
     service = TestBed.inject(SignInService);
     routerMock = TestBed.inject(Router);
-  }));
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
@@ -98,24 +98,32 @@ describe('SignInService', () => {
       });
     });
 
-    it('should redirect to the /error route when response is invalid', (done) => {
-      // GIVEN
-      const expectedResponse: SignInResponse = {
-        authToken: null,
-        errors: [ { code: 404, message: 'Not Found' } ],
-      };
-      const navigateByUrlSpy = spyOn(routerMock, 'navigateByUrl').and.returnValue(Promise.resolve(true));
-      authServiceSpy.signIn.and.returnValue(throwError(() => expectedResponse));
+  });
 
+  describe('getValidationErrorsByResponse', () => {
+
+    it('should return null when response is not contains the errors', () => {
       // WHEN
-      service.submit({ phoneNumber: '0528565742' }).subscribe({
-        next: fail,
-        error: response => {
-          // THEN
-          expect(navigateByUrlSpy).toHaveBeenCalledOnceWith('/error');
-          done();
-        }
-      });
+      const result = service.getValidationErrorsByResponse({ authToken: 'abc', errors: null });
+
+      // THEN
+      expect(result).toBeNull();
+    });
+
+    it('should return null when response is contains the unknown errors', () => {
+      // WHEN
+      const result = service.getValidationErrorsByResponse({ authToken: 'abc', errors: [ { code: 407, message: 'Unknown Error' } as unknown as SignInResponseError ] });
+
+      // THEN
+      expect(result).toBeNull();
+    });
+
+    it('should return errors object when response is contains the known errors', () => {
+      // WHEN - 404
+      const result = service.getValidationErrorsByResponse({ authToken: 'abc', errors: [ { code: 404, message: 'Unknown Error' } as unknown as SignInResponseError ] });
+
+      // THEN
+      expect(result).toEqual({ 'signIn.phoneNumber.cannotFindErrorText': true });
     });
 
   });

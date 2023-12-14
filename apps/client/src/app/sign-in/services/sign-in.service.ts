@@ -16,15 +16,13 @@ export class SignInService {
       exhaustMap(response => this.navigateToTheApp().pipe(
         map(() => response)
       )),
-      catchError(response => this.navigateToTheErrorPage().pipe(
-        exhaustMap(() => throwError(() => response))
-      )),
+      catchError(response => throwError(() => response)),
     );
   }
 
   getValidationErrorsByResponse(response: SignInResponse): ValidationErrors | null {
     if (Array.isArray(response.errors)) {
-      return response.errors.reduce((acc, error): ValidationErrors => {
+      const errors = response.errors.reduce((acc, error): ValidationErrors => {
         switch (error.code) {
           case SignInResponseErrorCodes.CannotFind:
             return Object.assign(acc, { 'signIn.phoneNumber.cannotFindErrorText': true });
@@ -33,16 +31,15 @@ export class SignInService {
             return acc;
         }
       }, {});
+      if (Object.keys(errors).length) {
+        return errors;
+      }
     }
     return null;
   }
 
   private navigateToTheApp(): Observable<boolean> {
     return from(this.router.navigateByUrl('/app/dashboard'));
-  }
-
-  private navigateToTheErrorPage(): Observable<boolean> {
-    return from(this.router.navigateByUrl('/error'));
   }
 
 }
