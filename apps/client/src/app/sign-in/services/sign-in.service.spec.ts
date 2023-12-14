@@ -1,28 +1,34 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of, throwError } from 'rxjs';
+import { AuthService } from '../../auth/auth.service';
 import { SignInResponse } from '../models/sign-in.interface';
 import { SignInService } from './sign-in.service';
 
 describe('SignInService', () => {
   let service: SignInService;
-  let httpMock: HttpTestingController;
   let routerMock: Router;
 
+  let authServiceSpy: jasmine.SpyObj<AuthService>;
+
   beforeEach((() => {
+    authServiceSpy = jasmine.createSpyObj('AuthService', [ 'signIn' ]);
+
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule,
         RouterTestingModule,
       ],
       providers: [
+        {
+          provide: AuthService,
+          useValue: authServiceSpy,
+        },
         SignInService,
       ],
     });
 
     service = TestBed.inject(SignInService);
-    httpMock = TestBed.inject(HttpTestingController);
     routerMock = TestBed.inject(Router);
   }));
 
@@ -39,6 +45,7 @@ describe('SignInService', () => {
         errors: null,
       };
       spyOn(routerMock, 'navigateByUrl').and.returnValue(Promise.resolve(true));
+      authServiceSpy.signIn.and.returnValue(of(expectedResponse));
 
       // WHEN
       service.submit({ phoneNumber: '0528565742' }).subscribe({
@@ -49,13 +56,6 @@ describe('SignInService', () => {
         },
         error: fail,
       });
-
-      const httpRequestNext = httpMock.expectOne({
-        method: 'POST',
-        url: '/api/sign-in',
-      });
-      httpRequestNext.flush(expectedResponse);
-      httpMock.verify();
     });
 
     it('should redirect to the /app/dashboard route when response is valid', (done) => {
@@ -65,6 +65,7 @@ describe('SignInService', () => {
         errors: null,
       };
       const navigateByUrlSpy = spyOn(routerMock, 'navigateByUrl').and.returnValue(Promise.resolve(true));
+      authServiceSpy.signIn.and.returnValue(of(expectedResponse));
 
       // WHEN
       service.submit({ phoneNumber: '0528565742' }).subscribe({
@@ -75,35 +76,46 @@ describe('SignInService', () => {
         },
         error: fail,
       });
-
-      const httpRequestNext = httpMock.expectOne('/api/sign-in');
-      httpRequestNext.flush(expectedResponse);
-      httpMock.verify();
     });
 
     it('should call the api and catch an error with response', (done) => {
       // GIVEN
       const expectedResponse: SignInResponse = {
         authToken: null,
-        errors: {},
+        errors: [ { code: 404, message: 'Not Found' } ],
       };
-      const navigateByUrlSpy = spyOn(routerMock, 'navigateByUrl').and.returnValue(Promise.resolve(true));
+      spyOn(routerMock, 'navigateByUrl').and.returnValue(Promise.resolve(true));
+      authServiceSpy.signIn.and.returnValue(throwError(() => expectedResponse));
 
       // WHEN
       service.submit({ phoneNumber: '0528565742' }).subscribe({
         next: fail,
         error: response => {
-          console.log({response})
           // THEN
           expect(response).toEqual(expectedResponse);
-          expect(navigateByUrlSpy).not.toHaveBeenCalled();
           done();
         }
       });
+    });
 
-      const httpRequestNext = httpMock.expectOne('/api/sign-in');
-      httpRequestNext.flush(expectedResponse, { status: 404, statusText: 'Bad Request' });
-      httpMock.verify();
+    it('should redirect to the /error route when response is invalid', (done) => {
+      // GIVEN
+      const expectedResponse: SignInResponse = {
+        authToken: null,
+        errors: [ { code: 404, message: 'Not Found' } ],
+      };
+      const navigateByUrlSpy = spyOn(routerMock, 'navigateByUrl').and.returnValue(Promise.resolve(true));
+      authServiceSpy.signIn.and.returnValue(throwError(() => expectedResponse));
+
+      // WHEN
+      service.submit({ phoneNumber: '0528565742' }).subscribe({
+        next: fail,
+        error: response => {
+          // THEN
+          expect(navigateByUrlSpy).toHaveBeenCalledOnceWith('/error');
+          done();
+        }
+      });
     });
 
   });
