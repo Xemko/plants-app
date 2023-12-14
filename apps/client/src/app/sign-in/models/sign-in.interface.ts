@@ -4,5 +4,14 @@ export interface SignInFormFields {
 
 export interface SignInResponse {
   authToken: null | string;
-  errors?: null | unknown;
+  errors?: null | SignInResponseError[];
+}
+
+export interface SignInResponseError {
+  code: SignInResponseErrorCodes;
+  message: string;
+}
+
+export enum SignInResponseErrorCodes {
+  CannotFind = 404,
 }
