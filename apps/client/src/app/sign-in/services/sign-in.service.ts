@@ -39,7 +39,7 @@ export class SignInService {
   }
 
   private navigateToTheApp(): Observable<boolean> {
-    return from(this.router.navigateByUrl('/app/dashboard'));
+    return from(this.router.navigateByUrl('/app'));
   }
 
 }
