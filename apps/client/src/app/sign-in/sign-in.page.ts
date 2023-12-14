@@ -2,8 +2,9 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { TranslocoPipe } from '@ngneat/transloco';
+import { FirstKeyPipe } from '../common/directives/first-error.pipe';
 import { ENVIRONMENT } from '../common/models/environment.model';
-import { SignInFormFields } from './models/sign-in.interface';
+import { SignInFormFields, SignInResponse } from './models/sign-in.interface';
 import { SignInService } from './services/sign-in.service';
 import { signInPhoneNumberValidator } from './validators/sign-in.validators';
 
@@ -12,7 +13,8 @@ import { signInPhoneNumberValidator } from './validators/sign-in.validators';
   templateUrl: 'sign-in.page.html',
   styleUrls: [ 'sign-in.page.scss' ],
   standalone: true,
-  imports: [ IonHeader, IonToolbar, IonTitle, IonContent, TranslocoPipe, ReactiveFormsModule, IonInput, IonItem, IonButton ],
+  imports: [ IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonButton,
+    TranslocoPipe, ReactiveFormsModule, FirstKeyPipe ],
   providers: [ SignInService ]
 })
 export class SignInPage {
@@ -26,7 +28,12 @@ export class SignInPage {
 
   submit(): void {
     if (this.form.valid) {
-      this.signInService.submit(this.form.value).subscribe();
+      this.signInService.submit(this.form.value).subscribe({
+        error: (response: SignInResponse) => {
+          const errors = this.signInService.getValidationErrorsByResponse(response);
+          this.form.get('phoneNumber')?.setErrors(errors);
+        }
+      });
     }
   }
 

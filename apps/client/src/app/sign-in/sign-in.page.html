@@ -26,7 +26,7 @@
       <ion-item>
         <ion-input
           [label]="'signIn.phoneNumber.label' | transloco"
-          [errorText]="'signIn.phoneNumber.errorText' | transloco"
+          [errorText]="form.get('phoneNumber')?.errors | firstKey | transloco"
           formControlName="phoneNumber"
           labelPlacement="stacked"
           aria-label="Danger input"
