@@ -20,9 +20,8 @@ export class AuthService {
 
   signIn(value: SignInFormFields): Observable<SignInResponse> {
     return this.http.post<SignInResponse>('/api/sign-in', value).pipe(
-      tap(async response => {
+      tap(response => {
         this.validateSubmitResponse(response);
-        await this.setAuthToken(response.authToken as string);
       }),
       catchError(response => throwError(() => this.extractResponseError(response))),
     );
