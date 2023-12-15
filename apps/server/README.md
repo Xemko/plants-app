@@ -15,7 +15,7 @@
 
 1. Start the server by running the following command:
    
-    node index.js
+    `npm start`
 
 2. Open your web browser and navigate to (http://localhost:3000) to view the application.
 
