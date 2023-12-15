@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { getTranslocoTestingModule } from '../common/transloco/transloco-testing.module';
 
 import { CalendarPage } from './calendar.page';
 
@@ -7,6 +8,14 @@ describe('CalendarPage', () => {
   let fixture: ComponentFixture<CalendarPage>;
 
   beforeEach(async () => {
+    TestBed.configureTestingModule({
+      providers: [
+        getTranslocoTestingModule(),
+      ]
+    });
+  });
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(CalendarPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
