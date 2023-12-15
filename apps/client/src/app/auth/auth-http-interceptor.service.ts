@@ -1,6 +1,6 @@
 import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { exhaustMap, filter, from, Observable } from 'rxjs';
+import { exhaustMap, from, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
@@ -21,16 +21,10 @@ export const authHttpInterceptor: HttpInterceptorFn = (
       if (authToken) {
         authReq = req.clone({ setHeaders: { Authorization: authToken } });
       }
-      console.log({authReq})
-      console.log({next})
+
       return next(authReq).pipe(
-        tap((event: HttpEvent<unknown>) => {
-          console.log(99, event)
-        }),
         tap(async (event: HttpEvent<unknown>) => {
-          console.log(44, event)
           if (hasAuthTokenInHttpResponse(event)) {
-            console.log(55, event.body)
             await authService.setAuthToken(event.body?.authToken as string);
           }
         })
