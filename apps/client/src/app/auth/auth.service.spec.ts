@@ -10,8 +10,8 @@ describe('AuthService', () => {
 
   let storageSpy: jasmine.SpyObj<Storage>;
 
-  beforeEach((() => {
-    storageSpy = jasmine.createSpyObj('Storage', [ 'setItem', 'getItem' ]);
+  beforeEach(() => {
+    storageSpy = jasmine.createSpyObj('Storage', [ 'set', 'get' ]);
 
     TestBed.configureTestingModule({
       imports: [
@@ -28,7 +28,7 @@ describe('AuthService', () => {
 
     service = TestBed.inject(AuthService);
     httpMock = TestBed.inject(HttpTestingController);
-  }));
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
@@ -81,6 +81,34 @@ describe('AuthService', () => {
       const httpRequestNext = httpMock.expectOne('/api/sign-in');
       httpRequestNext.flush(expectedResponse, { status: 404, statusText: 'Bad Request' });
       httpMock.verify();
+    });
+
+  });
+
+  describe('hasAccess', () => {
+
+    it('should return true when authToken is valid', (done) => {
+      // GIVEN
+      storageSpy.get.and.returnValue(Promise.resolve('abc'));
+
+      // WHEN
+      service.hasAccess().subscribe(result => {
+        // THEN
+        expect(result).toBeTrue();
+        done();
+      });
+    });
+
+    it('should return false when authToken is invalid', (done) => {
+      // GIVEN
+      storageSpy.get.and.returnValue(Promise.resolve(undefined));
+
+      // WHEN
+      service.hasAccess().subscribe(result => {
+        // THEN
+        expect(result).toBeFalse();
+        done();
+      });
     });
 
   });
