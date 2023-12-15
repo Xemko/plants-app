@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { from, Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { SignInFormFields, SignInResponse } from '../sign-in/models/sign-in.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -24,6 +24,14 @@ export class AuthService {
         this.validateSubmitResponse(response);
       }),
       catchError(response => throwError(() => this.extractResponseError(response))),
+    );
+  }
+
+  hasAccess(): Observable<boolean> {
+    return from(this.getAuthToken()).pipe(
+      // TODO validate the authToken against the service.
+      // exaustMap(authToken => ...),
+      map(authToken => !!authToken),
     );
   }
 
