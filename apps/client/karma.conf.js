@@ -39,6 +39,7 @@ module.exports = function (config) {
         '!src/**/*.spec.ts',
         '!src/**/*.module.ts',
         '!src/**/*.routes.ts',
+        '!src/**/*.config.ts',
         '!src/**/environment*.ts',
         '!src/zone-flags.ts'
       ]
