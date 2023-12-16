@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const User = require('./models/User');
+const bodyParser = require('body-parser');
 const app = express();
 const mainRoutes = require('./router/v1/main.routes');
 
@@ -17,14 +19,6 @@ myDb.once("open", () => {
    
 })
 
-const UserSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    phone: String
-  });
-  
-  // Define the User model
-  const User = mongoose.model('User', UserSchema);
   
 // Define an async function to query the users collection
 const getUsers = async () => {
@@ -35,8 +29,12 @@ const getUsers = async () => {
       console.error(err);
     }
   };
-getUsers();  
 
+  getUsers();  
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', mainRoutes);
 
 app.listen(PORT, () => {
