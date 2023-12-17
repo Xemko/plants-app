@@ -19,13 +19,13 @@ export const authHttpInterceptor: HttpInterceptorFn = (
       let authReq: HttpRequest<unknown> = req;
 
       if (authToken) {
-        authReq = req.clone({ setHeaders: { Authorization: authToken } });
+        authReq = req.clone({ setHeaders: { [HEADER_X_AUTH_TOKEN]: authToken } });
       }
 
       return next(authReq).pipe(
         tap(async (event: HttpEvent<unknown>) => {
           if (hasAuthTokenInHttpResponse(event)) {
-            await authService.setAuthToken(event.body?.authToken as string);
+            await authService.setAuthToken(getAuthTokenFromHttpResponse(event));
           }
         })
       );
@@ -33,5 +33,10 @@ export const authHttpInterceptor: HttpInterceptorFn = (
   );
 };
 
-const hasAuthTokenInHttpResponse = (event: any): event is HttpResponse<{ authToken: string; }> =>
-  event instanceof HttpResponse && 'authToken' in event.body && !!event.body.authToken;
+const HEADER_X_AUTH_TOKEN: string = 'x-auth-token';
+
+const hasAuthTokenInHttpResponse = (event: any): event is HttpResponse<unknown> =>
+  event instanceof HttpResponse && event.headers.has(HEADER_X_AUTH_TOKEN);
+
+const getAuthTokenFromHttpResponse = (event: HttpResponse<unknown>): string =>
+  event.headers.get(HEADER_X_AUTH_TOKEN) as string;

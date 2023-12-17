@@ -49,7 +49,7 @@ describe('AuthHttpInterceptor', () => {
     httpRequestNext.flush({ authToken });
 
     // THEN
-    expect(httpRequestNext.request.headers.get('Authorization')).toBe(authToken);
+    expect(httpRequestNext.request.headers.get('x-auth-token')).toBe(authToken);
   });
 
 });
