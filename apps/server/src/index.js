@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const User = require('./models/User');
 const bodyParser = require('body-parser');
 const app = express();
-const mainRoutes = require('./router/v1/main.routes');
+const mainRoutes = require('./router/v1/auth.routes');
 
 
 mongoose.connect(process.env.DB_URI);
