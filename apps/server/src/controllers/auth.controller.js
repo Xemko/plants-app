@@ -1,14 +1,16 @@
 
 const jwt = require('jsonwebtoken');
-const mainService = require('../services/auth.service');
+const authService = require('../services/auth.service');
+const { log } = require('console');
 
 const signIn = async (req, res) => {
     const { phoneNumber } = req.body;
+    console.log(phoneNumber);
     if (!phoneNumber) {
        return res.status(400).json({code: 400, message: "Phone number is required"});
     }
     try {
-        const user = await mainService.findUserByPhoneNumber(phoneNumber);
+        const user = await authService.findUserByPhoneNumber(phoneNumber);
         if (!user) {
           return res.status(404).json({code: 404, message: "User not found"});
         }
@@ -19,6 +21,22 @@ const signIn = async (req, res) => {
         return res.status(500).json({code: 500, message: "Internal server error"});
     }
     
+}
+
+const registerUser = async (req, res) => {
+    const existingUser = await authService.findUserByPhoneNumber(req.body);
+    if (existingUser) {
+        return res.status(409).json({ code: 409, message: 'User already exists' });
+    }
+    try {
+        const user = await authService.registerUser(req.body);
+        const token = jwt.sign({ _id: user._id }, process.env.JWT_PRIVATE_KEY);
+        console.log(user);
+        return res.header('x-auth-token', token).send(user);
+    } catch (err) {
+        return res.status(500).json({ code: 500, message: 'Internal server error' });
+    }
+
 }
 
 const auth = async (req, res, next) => {
@@ -39,5 +57,6 @@ const auth = async (req, res, next) => {
 
 module.exports = {
     signIn,
-    auth
+    auth,
+    registerUser
 }
