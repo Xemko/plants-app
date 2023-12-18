@@ -1,23 +1,39 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>{{ 'calendar.title' | transloco }}</ion-title>
+    <ion-title size="small">UserName's household</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding-horizontal">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense" class="ion-margin-bottom">
     <ion-toolbar>
       <ion-title size="large">{{ 'calendar.title' | transloco }}</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div class="week ion-justify-content-between">
-    <div class="day ion-justify-content-center">1</div>
-    <div class="day ion-justify-content-center">2</div>
-    <div class="day ion-justify-content-center">3</div>
-    <div class="day ion-justify-content-center">4</div>
-    <div class="day ion-justify-content-center">5</div>
-    <div class="day ion-justify-content-center">6</div>
-    <div class="day ion-justify-content-center">7</div>
-  </div>
+  <app-date-selector
+    [currentDate]="currentDate"
+  ></app-date-selector>
+
+  <div class="selected-date-title ion-margin-top">{{ currentDate | date: 'EEEE' }}</div>
+
+  <ion-accordion-group class="ion-margin-top">
+    <ion-accordion
+      *ngFor="let room of rooms"
+      [value]="room.name"
+      toggleIcon="caret-down-circle"
+      toggleIconSlot="start"
+    >
+      <ion-item slot="header" color="light">
+        <ion-label>{{ room.name }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <app-plants-list
+          [plants]="room.plants"
+        >
+        </app-plants-list>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
 </ion-content>

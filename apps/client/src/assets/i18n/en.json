@@ -14,5 +14,14 @@
       "cannotFindErrorText": "Can’t find your account"
     },
     "next": "Next"
+  },
+  "dates": {
+    "SundayShort": "Sun",
+    "MondayShort": "Mon",
+    "TuesdayShort": "Tue",
+    "WednesdayShort": "Wed",
+    "ThursdayShort": "Thu",
+    "FridayShort": "Fri",
+    "SaturdayShort": "Sat"
   }
 }
