@@ -1,0 +1,21 @@
+<div class="calendar-header">
+  <ion-title class="calendar-date-title">{{ currentDate | date: 'MMMM YYYY' }}</ion-title>
+  <div class="calendar-days-of-week">
+    <div
+      *ngFor="let title of daysOfWeekTitles"
+      class="day-of-week"
+    >{{ title | transloco }}</div>
+  </div>
+</div>
+
+<div class="calendar-body">
+  <div class="calendar-month">
+    <div class="calendar-month-grid">
+      <div
+        *ngFor="let day of daysList; let index = index"
+        [ngClass]="{ 'calendar-day-wrapper': true, 'selected': index === 0 }">
+        <button class="calendar-day">{{ day.value }}</button>
+      </div>
+    </div>
+  </div>
+</div>
