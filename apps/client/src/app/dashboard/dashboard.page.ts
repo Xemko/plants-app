@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
 import { TranslocoPipe } from '@ngneat/transloco';
 
@@ -6,6 +6,7 @@ import { TranslocoPipe } from '@ngneat/transloco';
   selector: 'app-dashboard',
   templateUrl: 'dashboard.page.html',
   styleUrls: ['dashboard.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [ IonHeader, IonToolbar, IonTitle, IonContent, TranslocoPipe ],
 })
