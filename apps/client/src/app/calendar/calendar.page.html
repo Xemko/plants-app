@@ -19,21 +19,23 @@
   <div class="selected-date-title ion-margin-top">{{ currentDate | date: 'EEEE' }}</div>
 
   <ion-accordion-group class="ion-margin-top">
-    <ion-accordion
-      *ngFor="let room of rooms"
-      [value]="room.name"
-      toggleIcon="caret-down-circle"
-      toggleIconSlot="start"
-    >
-      <ion-item slot="header" color="light">
-        <ion-label>{{ room.name }}</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">
-        <app-plants-list
-          [plants]="room.plants"
-        >
-        </app-plants-list>
-      </div>
-    </ion-accordion>
+    @for (room of rooms; track room.name) {
+      <ion-accordion
+        [value]="room.name"
+        toggleIcon="caret-down-circle"
+        toggleIconSlot="start"
+      >
+        <ion-item slot="header" color="light">
+          <ion-label>{{ room.name }}</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <app-plants-list
+            [plants]="room.plants"
+          >
+          </app-plants-list>
+        </div>
+      </ion-accordion>
+    }
+
   </ion-accordion-group>
 </ion-content>

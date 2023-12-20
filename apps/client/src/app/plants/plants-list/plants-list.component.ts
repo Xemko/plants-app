@@ -1,5 +1,5 @@
-import { NgForOf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Plant } from '../models/plant.interface';
 import { PlantItemComponent } from '../plant-item/plant-item.component';
 
 @Component({
@@ -8,10 +8,10 @@ import { PlantItemComponent } from '../plant-item/plant-item.component';
   styleUrls: [ './plants-list.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ PlantItemComponent, NgForOf ]
+  imports: [ PlantItemComponent ]
 })
 export class PlantsListComponent implements OnInit {
-  @Input({ required: true }) public plants: { name: string; img: string; }[] = [];
+  @Input({ required: true }) public plants: Plant[] = [];
 
   ngOnInit() {
   }
