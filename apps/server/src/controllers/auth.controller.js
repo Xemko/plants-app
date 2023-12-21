@@ -23,8 +23,17 @@ const registerUser = async (req, res) => {
     if (!userData) {
         return res.status(400).json({code: 400, message: "Please enter user data"});
     }
-const user = await authService.registerUser(userData);
-log(user);
+try {
+    const user = await authService.registerUser(userData);
+    if (!user) {
+        return res.status(500).json({code: 500, message: "Registration has failed. Please try again"});
+    }
+    const authToken = jwt.sign({ _id: user._id }, process.env.JWT_PRIVATE_KEY);
+    return res.header('x-auth-token', authToken).json({code: 201, message: "User registered successfully", user});
+} catch (error) {
+    return res.status(500).json({code: 500, message: "Internal server error"});
+}
+
 }
 
 const signIn = async (req, res) => {
@@ -39,7 +48,7 @@ const signIn = async (req, res) => {
           return res.status(404).json({code: 404, message: "Cannot find your account"});
         }
         const authToken = jwt.sign({ _id: user._id }, process.env.JWT_PRIVATE_KEY);
-         return res.header('x-auth-token', authToken).send(user);
+         return res.header('x-auth-token', authToken).json({code: 200, message: "User logged in successfully", user});
     }
     catch (err) {
         return res.status(500).json({code: 500, message: "Internal server error"});
