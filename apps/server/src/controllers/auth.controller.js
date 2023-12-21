@@ -28,7 +28,7 @@ try {
     if (!user) {
         return res.status(500).json({code: 500, message: "Registration has failed. Please try again"});
     }
-    const authToken = jwt.sign({ _id: user._id }, process.env.JWT_PRIVATE_KEY);
+    const authToken = jwt.sign({ id: user.id }, process.env.JWT_PRIVATE_KEY);
     return res.header('x-auth-token', authToken).json({code: 201, message: "User registered successfully", user});
 } catch (error) {
     return res.status(500).json({code: 500, message: "Internal server error"});
