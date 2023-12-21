@@ -2,17 +2,21 @@ POST http://localhost:3000/api/sign-in
 Content-Type: application/json
 
 {
-    "phoneNumber": "0546211013"
+    "phoneNumber": "0546211001"
 }
 
 
 ###
 
+GET http://localhost:3000/api/protected
+x-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTdlZmY3M2EzZjU5NWI2ZGUxNTk4MWIiLCJpYXQiOjE3MDI4ODM5MzB9.k_gRfBTfAA6BcwxrRG2Y-heIOE-PP9srMgbDkQ7W33I
+
+###
 POST http://localhost:3000/api/register
 Content-Type: application/json
 
 {
-    "name": "Vasya",
-    "email": "x3mkos@gmail.com",
-    "phoneNumber": "0546211001"
+    "name": "test",
+    "email": "test@test.test",
+    "phoneNumber": "0546211002"
 }

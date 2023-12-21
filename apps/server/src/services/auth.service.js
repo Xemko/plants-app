@@ -6,12 +6,10 @@ const findUserByPhoneNumber = async (phoneNumber) => {
 
 
 const registerUser = async (userData) => {
-    const { phoneNumber } = userData;
-    const existingUser = await findUserByPhoneNumber(phoneNumber);
-    if (existingUser) {
-        throw new Error('User already exists');
-    }
-    return await User.create(userData);
+    const {name, email, phoneNumber} = userData;
+    const user = new User({name, email, phoneNumber});
+    await user.save();
+    return user;
 }
 
 module.exports = {
