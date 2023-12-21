@@ -47,7 +47,7 @@ const signIn = async (req, res) => {
         if (!user) {
           return res.status(404).json({code: 404, message: "Cannot find your account"});
         }
-        const authToken = jwt.sign({ _id: user._id }, process.env.JWT_PRIVATE_KEY);
+        const authToken = jwt.sign({ id: user._id }, process.env.JWT_PRIVATE_KEY);
          return res.header('x-auth-token', authToken).json({code: 200, message: "User logged in successfully", user});
     }
     catch (err) {
