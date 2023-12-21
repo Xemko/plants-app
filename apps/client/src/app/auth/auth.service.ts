@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   signIn(value: SignInFormFields): Observable<SignInResponse> {
-    return this.http.post<SignInResponse>('/api/sign-in', value).pipe(
+    return this.http.post<SignInResponse>('/api/auth/sign-in', value).pipe(
       tap(response => {
         this.validateSubmitResponse(response);
       }),

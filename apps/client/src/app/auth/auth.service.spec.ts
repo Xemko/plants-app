@@ -55,7 +55,7 @@ describe('AuthService', () => {
 
       const httpRequestNext = httpMock.expectOne({
         method: 'POST',
-        url: '/api/sign-in',
+        url: '/api/auth/sign-in',
       });
       httpRequestNext.flush(expectedResponse);
       httpMock.verify();
@@ -78,7 +78,7 @@ describe('AuthService', () => {
         }
       });
 
-      const httpRequestNext = httpMock.expectOne('/api/sign-in');
+      const httpRequestNext = httpMock.expectOne('/api/auth/sign-in');
       httpRequestNext.flush(expectedResponse, { status: 404, statusText: 'Bad Request' });
       httpMock.verify();
     });
