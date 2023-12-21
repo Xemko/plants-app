@@ -16,7 +16,7 @@ POST http://localhost:3000/api/register
 Content-Type: application/json
 
 {
-    "name": "test",
-    "email": "test@test.test",
-    "phoneNumber": "0546211002"
+    "name": "xem1",
+    "email": "xem1@xem.test",
+    "phoneNumber": "0546211006"
 }
