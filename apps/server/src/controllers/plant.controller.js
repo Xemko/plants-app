@@ -9,6 +9,23 @@ const getPlants = async (req, res) => {
     }
 }
 
+const createPlant = async (req, res) => {
+    const plantData = req.body;
+    if (!plantData) {
+        return res.status(400).json({code: 400, message: "Please enter plant data"});
+}
+try {
+    const plant = await plantService.createPlant(plantData);
+    if (!plant) {
+        return res.status(500).json({code: 500, message: "Plant creation has failed. Please try again"});
+    }
+    return res.status(201).json({code: 201, message: "Plant created successfully", plant});
+} catch (error) {
+    return res.status(500).json({code: 500, message: "Internal server error", error});
+}
+}
+
 module.exports = {
-    getPlants
+    getPlants,
+    createPlant
 }
