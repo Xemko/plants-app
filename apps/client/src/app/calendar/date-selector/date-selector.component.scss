@@ -1,0 +1,96 @@
+.calendar-header {
+  .calendar-date-title {
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .calendar-days-of-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    color: var(--ion-color-step-500, gray);
+    font-size: 0.875rem;
+    line-height: 36px;
+
+    .day-of-week {
+      margin-inline: auto;
+      margin-top: 0;
+      margin-bottom: 0;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+}
+
+.calendar-body {
+  display: flex;
+  flex-grow: 1;
+  scroll-snap-type: x mandatory;
+  overflow: scroll hidden;
+  outline: none;
+
+  .calendar-month {
+    display: flex;
+    flex-flow: column;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    flex-shrink: 0;
+    width: 100%;
+
+    .calendar-month-grid {
+      padding-inline: 10;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      grid-template-rows: repeat(1, 1fr);
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+
+      .calendar-day-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        min-height: 0;
+        overflow: visible;
+
+        &.selected {
+          border: 2px solid var(--ion-color-primary, #3880ff);
+          background-color: rgb(93 93 93 / 50%);
+          border-radius: 50%;
+        }
+      }
+
+      .calendar-day[disabled] {
+        pointer-events: none;
+        opacity: 0.4;
+      }
+
+      .calendar-day {
+        width: 42px;
+        min-width: 42px;
+        height: 42px;
+        font-size: 0.875rem;
+        border-radius: 50%;
+        padding-inline: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-inline: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        outline: none;
+        background: none;
+        color: currentcolor;
+        font-family: var(--ion-font-family, inherit);
+        cursor: pointer;
+        appearance: none;
+        z-index: 0;
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { TranslocoPipe } from '@ngneat/transloco';
@@ -12,6 +12,7 @@ import { signInPhoneNumberValidator } from './validators/sign-in.validators';
   selector: 'app-sign-in',
   templateUrl: 'sign-in.page.html',
   styleUrls: [ 'sign-in.page.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [ IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonButton,
     TranslocoPipe, ReactiveFormsModule, FirstKeyPipe ],
