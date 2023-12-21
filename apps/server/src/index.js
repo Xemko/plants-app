@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const User = require('./models/User');
 const bodyParser = require('body-parser');
 const app = express();
-const mainRoutes = require('./router/v1/auth.routes');
+const authRoutes = require('./router/v1/auth.routes');
 
 
 mongoose.connect(process.env.DB_URI);
@@ -35,7 +35,7 @@ const getUsers = async () => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', mainRoutes);
+app.use('/api/auth/', authRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

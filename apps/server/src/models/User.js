@@ -2,11 +2,23 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const UserSchema = new Schema({
-    name: String,
-    email: String,
-    phoneNumber: String
-})
+    name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String, unique: true, required: true,
+    },
+    phoneNumber: {
+        type: String, unique: true, required: true,
+    }})
 
 const User = model('User', UserSchema);
 
-module.exports = User;
+// TODO move this to a proper file in the future
+const mapToPublicUser = (user) => {
+    const { _id, name, email, phoneNumber } = user;
+    return { id: _id, name, email, phoneNumber };
+}
+
+module.exports = {User, mapToPublicUser}

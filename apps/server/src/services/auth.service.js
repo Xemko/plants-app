@@ -1,17 +1,16 @@
-const User = require('../models/User');
+const { User, mapToPublicUser} = require('../models/User');
+
 
 const findUserByPhoneNumber = async (phoneNumber) => {
-    return await User.findOne({ phoneNumber });
+    return mapToPublicUser(await User.findOne({ phoneNumber }));
 }
 
 
 const registerUser = async (userData) => {
-    const { phoneNumber } = userData;
-    const existingUser = await findUserByPhoneNumber(phoneNumber);
-    if (existingUser) {
-        throw new Error('User already exists');
-    }
-    return await User.create(userData);
+    const {name, email, phoneNumber} = userData;
+    const user = new User({name, email, phoneNumber});
+    await user.save();
+    return user;
 }
 
 module.exports = {
