@@ -33,10 +33,10 @@ describe('AuthHttpInterceptor', () => {
   });
 
   // FIXME: this test is failing:
-  //        Error: Expected one matching request for criteria "Match URL: /api/sign-in", found none.
+  //        Error: Expected one matching request for criteria "Match URL: /api/auth/sign-in", found none.
   xit('should add auth headers ', () => {
     // GIVEN
-    const url = '/api/sign-in';
+    const url = '/api/auth/sign-in';
     const authToken = 'abc';
 
     authServiceSpy.getAuthToken.and.returnValue(Promise.resolve(authToken));
