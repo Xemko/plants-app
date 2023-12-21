@@ -2,7 +2,7 @@ POST http://localhost:3000/api/sign-in
 Content-Type: application/json
 
 {
-    "phoneNumber": "0546211001"
+    "phoneNumber": "0546211013"
 }
 
 
@@ -16,7 +16,7 @@ POST http://localhost:3000/api/register
 Content-Type: application/json
 
 {
-    "name": "xem1",
-    "email": "xem1@xem.test",
-    "phoneNumber": "0546211006"
+    "name": "xem2",
+    "email": "xem2@xem.test",
+    "phoneNumber": "0546211007"
 }
