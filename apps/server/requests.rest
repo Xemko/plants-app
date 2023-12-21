@@ -1,0 +1,18 @@
+POST http://localhost:3000/api/sign-in 
+Content-Type: application/json
+
+{
+    "phoneNumber": "0546211013"
+}
+
+
+###
+
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+    "name": "Vasya",
+    "email": "x3mkos@gmail.com",
+    "phoneNumber": "0546211001"
+}
