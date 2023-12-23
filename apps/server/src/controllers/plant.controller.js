@@ -11,6 +11,15 @@ const getPlants = async (req, res) => {
     }
 }
 
+const getPlantById = async (req, res) => {
+    try {
+        const plantId = req.params.id;
+        const plant = await plantService.getPlantById(plantId);
+        return res.status(200).json({code: 200, message: 'Success', data: plant});
+    } catch (err) {
+        return res.status(500).json({code: 500, message: 'Internal server error'});
+    }
+}
 const createPlant = async (req, res) => {
     const plantData = req.body;
     if (!plantData) {
