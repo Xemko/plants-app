@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
-import { from, Observable, throwError } from 'rxjs';
+import { from, Observable, take, throwError } from 'rxjs';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
 import { AuthService } from '../../auth/auth.service';
 import {
@@ -22,6 +22,7 @@ export class SignInService {
         map(() => response)
       )),
       catchError(response => throwError(() => response)),
+      take(1),
     );
   }
 
