@@ -4,7 +4,12 @@ import { Router } from '@angular/router';
 import { from, Observable, throwError } from 'rxjs';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
 import { AuthService } from '../../auth/auth.service';
-import { SignInFormFields, SignInResponse, SignInResponseErrorCodes } from '../models/sign-in.interface';
+import {
+  SignInFormFields,
+  SignInResponse,
+  SignInResponseError,
+  SignInResponseErrorCodes
+} from '../models/sign-in.interface';
 
 @Injectable()
 export class SignInService {
@@ -20,22 +25,14 @@ export class SignInService {
     );
   }
 
-  getValidationErrorsByResponse(response: SignInResponse): ValidationErrors | null {
-    if (Array.isArray(response.errors)) {
-      const errors = response.errors.reduce((acc, error): ValidationErrors => {
-        switch (error.code) {
-          case SignInResponseErrorCodes.CannotFind:
-            return Object.assign(acc, { 'signIn.phoneNumber.cannotFindErrorText': true });
+  getValidationErrorsByResponse(error: SignInResponseError): ValidationErrors | null {
+    switch (error.code) {
+      case SignInResponseErrorCodes.CannotFind:
+        return { 'signIn.phoneNumber.cannotFindErrorText': true };
 
-          default:
-            return acc;
-        }
-      }, {});
-      if (Object.keys(errors).length) {
-        return errors;
-      }
+      default:
+        return null;
     }
-    return null;
   }
 
   private navigateToTheApp(): Observable<boolean> {

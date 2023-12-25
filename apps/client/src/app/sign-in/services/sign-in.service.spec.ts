@@ -41,8 +41,8 @@ describe('SignInService', () => {
     it('should call the api with correct url and payload', (done) => {
       // GIVEN
       const expectedResponse: SignInResponse = {
-        authToken: 'abc',
-        errors: null,
+        code: 200,
+        message: 'OK',
       };
       spyOn(routerMock, 'navigateByUrl').and.returnValue(Promise.resolve(true));
       authServiceSpy.signIn.and.returnValue(of(expectedResponse));
@@ -61,8 +61,8 @@ describe('SignInService', () => {
     it('should redirect to the /app route when response is valid', (done) => {
       // GIVEN
       const expectedResponse: SignInResponse = {
-        authToken: 'abc',
-        errors: null,
+        code: 200,
+        message: 'OK',
       };
       const navigateByUrlSpy = spyOn(routerMock, 'navigateByUrl').and.returnValue(Promise.resolve(true));
       authServiceSpy.signIn.and.returnValue(of(expectedResponse));
@@ -80,10 +80,7 @@ describe('SignInService', () => {
 
     it('should call the api and catch an error with response', (done) => {
       // GIVEN
-      const expectedResponse: SignInResponse = {
-        authToken: null,
-        errors: [ { code: 404, message: 'Not Found' } ],
-      };
+      const expectedResponse: SignInResponseError = { code: 404, message: 'Not Found' };
       spyOn(routerMock, 'navigateByUrl').and.returnValue(Promise.resolve(true));
       authServiceSpy.signIn.and.returnValue(throwError(() => expectedResponse));
 
@@ -104,7 +101,7 @@ describe('SignInService', () => {
 
     it('should return null when response is not contains the errors', () => {
       // WHEN
-      const result = service.getValidationErrorsByResponse({ authToken: 'abc', errors: null });
+      const result = service.getValidationErrorsByResponse({ errors: null } as unknown as SignInResponseError);
 
       // THEN
       expect(result).toBeNull();
@@ -112,7 +109,7 @@ describe('SignInService', () => {
 
     it('should return null when response is contains the unknown errors', () => {
       // WHEN
-      const result = service.getValidationErrorsByResponse({ authToken: 'abc', errors: [ { code: 407, message: 'Unknown Error' } as unknown as SignInResponseError ] });
+      const result = service.getValidationErrorsByResponse({ code: 407, message: 'Unknown Error' } as unknown as SignInResponseError);
 
       // THEN
       expect(result).toBeNull();
@@ -120,7 +117,7 @@ describe('SignInService', () => {
 
     it('should return errors object when response is contains the known errors', () => {
       // WHEN - 404
-      const result = service.getValidationErrorsByResponse({ authToken: 'abc', errors: [ { code: 404, message: 'Unknown Error' } as unknown as SignInResponseError ] });
+      const result = service.getValidationErrorsByResponse({ code: 404, message: 'Unknown Error' } as unknown as SignInResponseError);
 
       // THEN
       expect(result).toEqual({ 'signIn.phoneNumber.cannotFindErrorText': true });

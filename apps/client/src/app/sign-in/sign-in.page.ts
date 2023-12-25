@@ -4,7 +4,7 @@ import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonTitle, IonToolb
 import { TranslocoPipe } from '@ngneat/transloco';
 import { FirstKeyPipe } from '../common/directives/first-error.pipe';
 import { ENVIRONMENT } from '../common/models/environment.model';
-import { SignInFormFields, SignInResponse } from './models/sign-in.interface';
+import { SignInFormFields, SignInResponseError } from './models/sign-in.interface';
 import { SignInService } from './services/sign-in.service';
 import { signInPhoneNumberValidator } from './validators/sign-in.validators';
 
@@ -30,7 +30,7 @@ export class SignInPage {
   submit(): void {
     if (this.form.valid) {
       this.signInService.submit(this.form.value).subscribe({
-        error: (response: SignInResponse) => {
+        error: (response: SignInResponseError) => {
           const errors = this.signInService.getValidationErrorsByResponse(response);
           this.form.get('phoneNumber')?.setErrors(errors);
         }

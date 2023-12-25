@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage-angular';
 import { of, throwError } from 'rxjs';
 import { ENVIRONMENT } from '../common/models/environment.model';
 import { getTranslocoTestingModule } from '../common/transloco/transloco-testing.module';
-import { SignInResponse } from './models/sign-in.interface';
+import { SignInResponse, SignInResponseError } from './models/sign-in.interface';
 import { SignInService } from './services/sign-in.service';
 
 import { SignInPage } from './sign-in.page';
@@ -96,10 +96,7 @@ describe('SignInPage', () => {
 
   it('should set phoneNumber errors when signInService.submit returns an error', () => {
     // GIVEN
-    const expectedResponse: SignInResponse = {
-      authToken: null,
-      errors: [ { code: 404, message: 'Not Found' } ],
-    };
+    const expectedResponse: SignInResponseError = { code: 404, message: 'Not Found' };
     signInServiceSpy.submit.and.returnValue(throwError(() => expectedResponse));
     signInServiceSpy.getValidationErrorsByResponse.and.returnValue({ notFoundError: true });
 
