@@ -19,18 +19,18 @@
   <div class="selected-date-title ion-margin-top">{{ currentDate | date: 'EEEE' }}</div>
 
   <ion-accordion-group class="ion-margin-top">
-    @for (room of rooms; track room.name) {
+    @for (item of plants | keyvalue; track item) {
       <ion-accordion
-        [value]="room.name"
+        [value]="item.key"
         toggleIcon="caret-down-circle"
         toggleIconSlot="start"
       >
         <ion-item slot="header" color="light">
-          <ion-label>{{ room.name }}</ion-label>
+          <ion-label>{{ item.key }}</ion-label>
         </ion-item>
         <div class="ion-padding" slot="content">
           <app-plants-list
-            [plants]="room.plants"
+            [plants]="item.value"
           >
           </app-plants-list>
         </div>
