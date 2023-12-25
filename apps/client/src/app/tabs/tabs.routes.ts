@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '../auth/auth.guard';
+import { plantsByRoomResolver } from '../plants/services/plants-by-room.resolver';
+import { PlantsService } from '../plants/services/plants.service';
 import { TabsPage } from './tabs.page';
 
 export const routes: Routes = [
@@ -17,6 +19,12 @@ export const routes: Routes = [
         path: 'calendar',
         loadComponent: () =>
           import('../calendar/calendar.page').then((m) => m.CalendarPage),
+        providers: [
+          PlantsService,
+        ],
+        resolve: {
+          plants: plantsByRoomResolver,
+        },
       },
       {
         path: '',

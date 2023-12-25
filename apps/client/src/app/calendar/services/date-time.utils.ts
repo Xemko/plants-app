@@ -16,6 +16,5 @@ export const getWeekDays = (current: Date): { value: number; }[] => {
     result.push({ value: new Date(current).getDate() });
     current.setDate(current.getDate() +1);
   }
-  console.log({result})
   return result;
 }
