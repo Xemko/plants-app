@@ -1,8 +1,8 @@
-const { User, mapToPublicUser} = require('../models/User');
+const User = require('../models/User');
 
 
 const findUserByPhoneNumber = async (phoneNumber) => {
-    return mapToPublicUser(await User.findOne({ phoneNumber }));
+    return await User.findOne({ phoneNumber });
 }
 
 

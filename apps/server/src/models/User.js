@@ -16,12 +16,9 @@ const UserSchema = new Schema({
 const User = model('User', UserSchema);
 
 // TODO move this to a proper file in the future
-const mapToPublicUser = (user) => {
-    const { _id, name, email, phoneNumber } = user;
-    return { id: _id, name, email, phoneNumber };
-}
+// const mapToPublicUser = (user) => {
+//     const { _id, name, email, phoneNumber } = user;
+//     return { id: _id, name, email, phoneNumber };
+// }
 
-module.exports = {
-    User,
-    mapToPublicUser
-}
+module.exports = User
