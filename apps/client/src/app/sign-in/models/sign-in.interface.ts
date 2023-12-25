@@ -1,15 +1,15 @@
+import { ServerResponseBase } from '../../common/models/server-response.model';
+
 export interface SignInFormFields {
   phoneNumber: string;
 }
 
-export interface SignInResponse {
-  authToken: null | string;
-  errors?: null | SignInResponseError[];
+export interface SignInResponse extends ServerResponseBase {
+  // TODO implement when server is ready
 }
 
-export interface SignInResponseError {
+export interface SignInResponseError extends ServerResponseBase {
   code: SignInResponseErrorCodes;
-  message: string;
 }
 
 export enum SignInResponseErrorCodes {
