@@ -10,8 +10,11 @@ const createPlant = async (plantData) => {
 const getPlant = async (plantName) => {
     return await Plant.findOne({name: plantName});
 }
-
+const getPlantsByUserId = async (userId) => {
+    return await Plant.find({userId : userId});
+}
 module.exports = {
     createPlant,
-    getPlant
+    getPlant,
+    getPlantsByUserId
 }

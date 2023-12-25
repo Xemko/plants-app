@@ -21,4 +21,7 @@ const mapToPublicUser = (user) => {
     return { id: _id, name, email, phoneNumber };
 }
 
-module.exports = {User, mapToPublicUser}
+module.exports = {
+    User,
+    mapToPublicUser
+}

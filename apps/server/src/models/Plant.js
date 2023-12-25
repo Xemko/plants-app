@@ -24,8 +24,8 @@ const PlantSchema = new Schema({
         type: Date,
     },
     userId: {
-        type: String,
-        required: true,
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     image: {
         type: String,
@@ -49,5 +49,5 @@ const PlantSchema = new Schema({
 //     next();
 // });
 
-const Plant = model('Plant', PlantSchema);
+const Plant = model("Plant", PlantSchema);
 module.exports = Plant;

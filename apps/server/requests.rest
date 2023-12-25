@@ -1,3 +1,4 @@
+
 POST http://localhost:3000/api/auth/sign-in 
 Content-Type: application/json
 
@@ -25,7 +26,7 @@ POST http://localhost:3000/api/plants/
 Content-Type: application/json
 
 {
-    "name": "Cactus",
+    "name": "Cactus1",
     "description": "Cactus is a plant",
     "image": "placeholder",
     "waterFrequency" : 1,
@@ -38,3 +39,6 @@ Content-Type: application/json
 {
     "name": "Cactus"
 }
+
+###
+GET http://localhost:3000/api/plants/user/657cf041a2328d1b60592bd8
