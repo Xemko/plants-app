@@ -37,7 +37,7 @@ const signIn = async (req, res) => {
          return res.header('x-auth-token', authToken).json({code: 200, message: "User logged in successfully", user});
     }
     catch (err) {
-        return res.status(500).json({code: 500, message: "Internal server error"});
+        return res.status(500).json({code: 500, message: "Internal server error", err});
     }
     
 }
