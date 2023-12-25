@@ -6,11 +6,12 @@ const createPlant = async (plantData) => {
     await plant.save();
     return plant;
 }
-const getPlants = async () => {
-    return await Plant.find();
+
+const getPlant = async (plantName) => {
+    return await Plant.findOne({name: plantName});
 }
 
 module.exports = {
     createPlant,
-    getPlants
+    getPlant
 }

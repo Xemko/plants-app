@@ -20,3 +20,21 @@ Content-Type: application/json
     "email": "xem2@xem.test",
     "phoneNumber": "0546211007"
 }
+###
+POST http://localhost:3000/api/plants/
+Content-Type: application/json
+
+{
+    "name": "Cactus",
+    "description": "Cactus is a plant",
+    "image": "placeholder",
+    "waterFrequency" : 1,
+    "userId": "657cf041a2328d1b60592bd8"
+}
+###
+GET http://localhost:3000/api/plants/
+Content-Type: application/json
+
+{
+    "name": "Cactus"
+}

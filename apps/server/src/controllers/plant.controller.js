@@ -1,16 +1,25 @@
 const plantService = require('../services/plant.service');
 
-const getPlants = async (req, res) => {
+const getPlant = async (req, res) => {
     try {
-        const userId = req.user.id;
+        const plantName = req.body.name;
         // TODO getPlantsByUserId
-        const plants = await plantService.getPlants(userId);
-        return res.status(200).json({code: 200, message: 'Success', data: plants});
+        const plant = await plantService.getPlant(plantName);
+        return res.status(200).json({code: 200, message: 'Success', plant});
     } catch (err) {
         return res.status(500).json({code: 500, message: 'Internal server error'});
     }
 }
 
+const getPlantById = async (req, res) => {
+    try {
+        const plantId = req.params.id;
+        const plant = await plantService.getPlantById(plantId);
+        return res.status(200).json({code: 200, message: 'Success', data: plant});
+    } catch (err) {
+        return res.status(500).json({code: 500, message: 'Internal server error'});
+    }
+}
 const createPlant = async (req, res) => {
     const plantData = req.body;
     if (!plantData) {
@@ -28,6 +37,6 @@ try {
 }
 
 module.exports = {
-    getPlants,
+    getPlant,
     createPlant
 }

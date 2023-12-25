@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const plantController = require('../../controllers/plant.controller');
+const {getPlant, createPlant} = require('../../controllers/plant.controller');
 
-router.get('/', plantController.getPlants);
+router.get('/', getPlant);
 
-router.get('/:plantId', plantController.getOnePlant);
+router.get('/:plantId', getPlant);
 
-router.post('/', plantController.createNewPlant);
+router.post('/', createPlant);
 
-router.put('/:plantId', plantController.updateOnePlant);
+//router.put('/:plantId', plantController.updateOnePlant);
 
-router.delete('/:plantId', plantController.deleteOnePlant);
+// router.delete('/:plantId', plantController.deleteOnePlant);
 
 module.exports = router;
