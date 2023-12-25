@@ -30,6 +30,9 @@ const PlantSchema = new Schema({
     image: {
         type: String,
     },
+    image: {
+        type: String,
+    },
     room: {
         type: String,
         default: "Living Room",

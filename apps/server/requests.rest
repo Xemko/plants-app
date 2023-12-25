@@ -27,6 +27,7 @@ Content-Type: application/json
 
 {
     "name": "Cactus1",
+
     "description": "Cactus is a plant",
     "image": "placeholder",
     "waterFrequency" : 1,
@@ -41,4 +42,6 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/plants/user/657cf041a2328d1b60592bd8
+GET http://localhost:3000/api/plants/657cf041a2328d1b60592bd8
+
+
