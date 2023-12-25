@@ -1,8 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { from, Observable, throwError } from 'rxjs';
+import { exhaustMap, from, Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { ServerResponseBase } from '../common/models/server-response.model';
 import { SignInFormFields, SignInResponse } from '../sign-in/models/sign-in.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -21,25 +22,38 @@ export class AuthService {
   signIn(value: SignInFormFields): Observable<SignInResponse> {
     return this.http.post<SignInResponse>('/api/auth/sign-in', value).pipe(
       tap(response => {
-        this.validateSubmitResponse(response);
+        this.validateSignInResponse(response);
       }),
+      catchError(response => throwError(() => this.extractResponseError(response))),
+    );
+  }
+
+  validate(): Observable<ServerResponseBase> {
+    return this.http.get<ServerResponseBase>('/api/auth/validate').pipe(
       catchError(response => throwError(() => this.extractResponseError(response))),
     );
   }
 
   hasAccess(): Observable<boolean> {
     return from(this.getAuthToken()).pipe(
-      // TODO validate the authToken against the service.
-      // exaustMap(authToken => ...),
       map(authToken => !!authToken),
+      exhaustMap((hasAuthToken: boolean) => {
+        if (!hasAuthToken) {
+          return of(false);
+        }
+        return this.validate().pipe(
+          map(() => hasAuthToken),
+          catchError(() => of(false)),
+        );
+      }),
     );
   }
 
-  private validateSubmitResponse(response: SignInResponse): void {
+  private validateSignInResponse(response: SignInResponse): void {
     // TODO implement when server is ready
   }
 
-  private extractResponseError(response: HttpErrorResponse) {
+  private extractResponseError(response: HttpErrorResponse): ServerResponseBase {
     // TODO implement when server is ready
     return response.error;
   }
