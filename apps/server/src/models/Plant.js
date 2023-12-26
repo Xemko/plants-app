@@ -8,6 +8,7 @@ const PlantSchema = new Schema({
     },
     description: {
         type: String,
+        default: "No description",
     },
     waterFrequency: {
         type: Number,
@@ -19,6 +20,7 @@ const PlantSchema = new Schema({
     },
     lastWatered: {
         type: Date,
+        default: Date.now,
     },
     nextWatering: {
         type: Date,
@@ -29,9 +31,7 @@ const PlantSchema = new Schema({
     },
     image: {
         type: String,
-    },
-    image: {
-        type: String,
+        default : "placeholder"
     },
     room: {
         type: String,
@@ -39,6 +39,7 @@ const PlantSchema = new Schema({
     },
     status: {
         type: Number,
+        default: 0,
     },
 
 });

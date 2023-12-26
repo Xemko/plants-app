@@ -2,10 +2,9 @@ const plantService = require('../services/plant.service');
 
 const getPlant = async (req, res) => {
     try {
-        const plantName = req.body.name;
-        // TODO getPlantsByUserId
-        const plant = await plantService.getPlant(plantName);
-        return res.status(200).json({code: 200, message: 'Success', plant});
+        const userId = req.params.userId;
+        const plants = await plantService.getPlantsByUserId(userId);
+        return res.status(200).json({code: 200, message: 'Success', plants});
     } catch (err) {
         return res.status(500).json({code: 500, message: 'Internal server error'});
     }
@@ -15,7 +14,7 @@ const getPlantsByUserId = async (req, res) => {
     try {
         const userId = req.params.userId;
         const plants = await plantService.getPlantsByUserId(userId);
-        return res.status(200).json({code: 200, message: 'Success', data: plants});
+        return res.status(200).json({code: 200, message: 'Success', plants});
     } catch (err) {
         return res.status(500).json({code: 500, message: 'Internal server error'});
     }
@@ -43,7 +42,7 @@ const updatePlantById = async (req, res) => {
 
         const updatedPlant = await plantService.updatePlantById(plantId, plantData);
 
-        return res.status(200).json({code: 200, message: 'Success', data: updatedPlant});
+        return res.status(200).json({code: 200, message: 'Success', updatedPlant});
 
     } catch (err) {
         return res.status(500).json({code: 500, message: 'Internal server error'});
@@ -54,7 +53,7 @@ const deletePlantById = async (req, res) => {
     try {
         const plantId = req.params.plantId;
         const deletedPlant = await plantService.deletePlantById(plantId);
-        return res.status(200).json({code: 200, message: 'Success', data: deletedPlant});
+        return res.status(200).json({code: 200, message: 'Success', deletedPlant});
     } catch (err) {
         return res.status(500).json({code: 500, message: 'Internal server error'});
     }
