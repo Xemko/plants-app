@@ -1,7 +1,6 @@
 
 const jwt = require('jsonwebtoken');
 const authService = require('../services/auth.service');
-const User = require('../models/User');
 
 
 const registerUser = async (req, res) => {
@@ -24,15 +23,11 @@ try {
 
 const signIn = async (req, res) => {
     const { phoneNumber } = req.body;
-    console.log(phoneNumber);
     if (!phoneNumber) {
        return res.status(401).json({code: 401, message: "Please enter a valid phone number"});
     }
     try {
         const user = await authService.findUserByPhoneNumber(phoneNumber);
-        if (!user) {
-          return res.status(404).json({code: 404, message: "Cannot find your account"});
-        }
         const authToken = jwt.sign({ id: user._id }, process.env.JWT_PRIVATE_KEY);
          return res.header('x-auth-token', authToken).json({code: 200, message: "User logged in successfully", user});
     }
