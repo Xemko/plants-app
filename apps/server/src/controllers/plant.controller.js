@@ -12,7 +12,7 @@ const getPlant = async (req, res) => {
 
 const getPlantsByUserId = async (req, res) => {
     try {
-        const userId = req.params.userId;
+        const userId = req.user.id;
         const plants = await plantService.getPlantsByUserId(userId);
         return res.status(200).json({code: 200, message: 'Success', plants});
     } catch (err) {
@@ -40,9 +40,9 @@ const updatePlantById = async (req, res) => {
         const plantId = req.params.plantId;
         const plantData = req.body;
 
-        const updatedPlant = await plantService.updatePlantById(plantId, plantData);
+        const plant = await plantService.updatePlantById(plantId, plantData);
 
-        return res.status(200).json({code: 200, message: 'Success', updatedPlant});
+        return res.status(200).json({code: 200, message: 'Success', plant});
 
     } catch (err) {
         return res.status(500).json({code: 500, message: 'Internal server error'});
@@ -52,8 +52,8 @@ const updatePlantById = async (req, res) => {
 const deletePlantById = async (req, res) => {
     try {
         const plantId = req.params.plantId;
-        const deletedPlant = await plantService.deletePlantById(plantId);
-        return res.status(200).json({code: 200, message: 'Success', deletedPlant});
+        const plant = await plantService.deletePlantById(plantId);
+        return res.status(200).json({code: 200, message: 'Success', plant});
     } catch (err) {
         return res.status(500).json({code: 500, message: 'Internal server error'});
     }
