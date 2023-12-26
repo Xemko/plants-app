@@ -11,7 +11,8 @@ const createPlant = async (plantData) => {
 //     return await Plant.findOne({name: plantName});
 // }
 const getPlantsByUserId = async (userId) => {
-    return await Plant.find({userId});
+    const plants = await Plant.find({userId});
+    return plants;
 }
 const updatePlantById = async (plantId, plantData) => {
     const updatedPlant = await Plant.findByIdAndUpdate(plantId, plantData, {new: true});

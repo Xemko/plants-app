@@ -35,7 +35,7 @@ Content-Type: application/json
     "image": "",
     "room": "",
     "status": "",
-    "userId": "657cf041a2328d1b60592bd8"
+    "userId": "658b001a567c1f5e73e13560"
 }
 ###
 GET http://localhost:3000/api/plants/
@@ -46,7 +46,8 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/plants/
+GET http://localhost:3000/api/plants
+
 ###
 PUT http://localhost:3000/api/plants/6589f6af73d64a21e5ad5623
 Content-Type: application/json
