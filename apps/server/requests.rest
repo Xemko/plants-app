@@ -44,4 +44,18 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/api/plants/657cf041a2328d1b60592bd8
 
+###
+PUT http://localhost:3000/api/plants/6589f6b973d64a21e5ad5626
+Content-Type: application/json
 
+{
+    "name": "notACactus",
+    "description": "Cactus is a plant",
+    "image": "placeholder",
+    "waterFrequency" : 1,
+    "userId": "657cf041a2328d1b60592bd8",
+    "room": "Kitchen"
+}
+
+###
+DELETE http://localhost:3000/api/plants/658707e6ca40340bf022ff37

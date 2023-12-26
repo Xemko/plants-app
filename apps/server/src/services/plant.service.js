@@ -13,8 +13,19 @@ const getPlant = async (plantName) => {
 const getPlantsByUserId = async (userId) => {
     return await Plant.find({userId : userId});
 }
+const updatePlantById = async (plantId, plantData) => {
+    const updatedPlant = await Plant.findByIdAndUpdate(plantId, plantData, {new: true});
+    return updatedPlant;
+}
+const deletePlantById = async (plantId) => {
+    const deletedPlant = await Plant.findByIdAndDelete(plantId);
+    return deletedPlant;
+}
+
 module.exports = {
     createPlant,
     getPlant,
-    getPlantsByUserId
+    getPlantsByUserId,
+    updatePlantById,  
+    deletePlantById
 }
