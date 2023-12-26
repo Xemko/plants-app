@@ -26,11 +26,15 @@ POST http://localhost:3000/api/plants/
 Content-Type: application/json
 
 {
-    "name": "Cactus1",
-
-    "description": "Cactus is a plant",
-    "image": "placeholder",
+    "name": "notCactus",
+    "description": "notCactus is a plant",
     "waterFrequency" : 1,
+    "createdDate": "",
+    "lastWateredDate": "",
+    "nextWatering": "",
+    "image": "",
+    "room": "",
+    "status": "",
     "userId": "657cf041a2328d1b60592bd8"
 }
 ###
@@ -45,7 +49,7 @@ Content-Type: application/json
 GET http://localhost:3000/api/plants/657cf041a2328d1b60592bd8
 
 ###
-PUT http://localhost:3000/api/plants/6589f6b973d64a21e5ad5626
+PUT http://localhost:3000/api/plants/6589f6af73d64a21e5ad5623
 Content-Type: application/json
 
 {
@@ -58,4 +62,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/api/plants/658707e6ca40340bf022ff37
+DELETE http://localhost:3000/api/plants/6589f6af73d64a21e5ad5623

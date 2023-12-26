@@ -7,9 +7,9 @@ const createPlant = async (plantData) => {
     return plant;
 }
 
-const getPlant = async (plantName) => {
-    return await Plant.findOne({name: plantName});
-}
+// const getPlant = async (plantName) => {
+//     return await Plant.findOne({name: plantName});
+// }
 const getPlantsByUserId = async (userId) => {
     return await Plant.find({userId : userId});
 }
@@ -24,7 +24,7 @@ const deletePlantById = async (plantId) => {
 
 module.exports = {
     createPlant,
-    getPlant,
+    // getPlant,
     getPlantsByUserId,
     updatePlantById,  
     deletePlantById
