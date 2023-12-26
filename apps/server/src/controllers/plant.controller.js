@@ -13,6 +13,7 @@ const getPlant = async (req, res) => {
 const getPlantsByUserId = async (req, res) => {
     try {
         const userId = req.user.id;
+        console.log(userId);
         const plants = await plantService.getPlantsByUserId(userId);
         return res.status(200).json({code: 200, message: 'Success', plants});
     } catch (err) {
