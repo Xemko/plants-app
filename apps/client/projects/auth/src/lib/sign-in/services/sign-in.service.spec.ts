@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../auth.service';
 import { SignInResponse, SignInResponseError } from '../models/sign-in.interface';
 import { SignInService } from './sign-in.service';
 

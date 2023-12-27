@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { Storage } from '@ionic/storage-angular';
 import { of, throwError } from 'rxjs';
-import { SignInResponse, SignInResponseError } from '../sign-in/models/sign-in.interface';
+import { SignInResponse, SignInResponseError } from './sign-in/models/sign-in.interface';
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {
