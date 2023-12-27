@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { getTranslocoTestingModule } from '../common/transloco/transloco-testing.module';
+import { getTranslocoTestingModule } from '../transloco/transloco-testing.module';
 
 import { DashboardPage } from './dashboard.page';
 

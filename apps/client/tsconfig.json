@@ -2,6 +2,16 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@plants-app/infra": [
+        "dist/infra",
+//         "projects/infra/src/public-api"
+      ],
+      "@plants-app/auth": [
+        "dist/auth",
+//        "projects/auth/src/public-api"
+      ]
+    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

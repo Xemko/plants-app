@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from '../auth/auth.guard';
+import { authGuard } from '@plants-app/auth';
 import { plantsByRoomResolver } from '../plants/services/plants-by-room.resolver';
 import { PlantsService } from '../plants/services/plants.service';
 import { TabsPage } from './tabs.page';
