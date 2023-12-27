@@ -3,8 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { exhaustMap, from, Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { ServerResponseBase } from '../common/models/server-response.model';
-import { SignInFormFields, SignInResponse } from '../sign-in/models/sign-in.interface';
+import { ServerResponseBase } from '@plants-app/infra';
+import { SignInFormFields, SignInResponse } from './sign-in/models/sign-in.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

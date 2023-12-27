@@ -1,4 +1,4 @@
-import { ServerResponseBase } from '../../common/models/server-response.model';
+import { ServerResponseBase } from '@plants-app/infra';
 
 export interface SignInFormFields {
   phoneNumber: string;

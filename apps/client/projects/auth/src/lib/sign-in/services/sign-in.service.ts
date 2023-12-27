@@ -3,7 +3,7 @@ import { ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { from, Observable, take, throwError } from 'rxjs';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../auth.service';
 import {
   SignInFormFields,
   SignInResponse,
