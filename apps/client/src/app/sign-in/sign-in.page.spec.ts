@@ -2,10 +2,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Storage } from '@ionic/storage-angular';
 import { of, throwError } from 'rxjs';
-import { ENVIRONMENT } from '../common/models/environment.model';
-import { getTranslocoTestingModule } from '../common/transloco/transloco-testing.module';
-import { SignInResponse, SignInResponseError } from './models/sign-in.interface';
-import { SignInService } from './services/sign-in.service';
+import { SignInService, SignInResponse, SignInResponseError } from '@plants-app/auth';
+import { ENVIRONMENT } from '@plants-app/infra';
+import { getTranslocoTestingModule } from '../transloco/transloco-testing.module';
 
 import { SignInPage } from './sign-in.page';
 

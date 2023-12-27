@@ -2,11 +2,8 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { TranslocoPipe } from '@ngneat/transloco';
-import { FirstKeyPipe } from '../common/directives/first-error.pipe';
-import { ENVIRONMENT } from '../common/models/environment.model';
-import { SignInFormFields, SignInResponseError } from './models/sign-in.interface';
-import { SignInService } from './services/sign-in.service';
-import { signInPhoneNumberValidator } from './validators/sign-in.validators';
+import { ENVIRONMENT, FirstKeyPipe } from '@plants-app/infra';
+import { SignInFormFields, SignInService, SignInResponseError, signInPhoneNumberValidator } from '@plants-app/auth';
 
 @Component({
   selector: 'app-sign-in',

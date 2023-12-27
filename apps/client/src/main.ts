@@ -9,9 +9,9 @@ import { provideTransloco } from '@ngneat/transloco';
 import { AppComponent } from './app/app.component';
 
 import { routes } from './app/app.routes';
-import { authHttpInterceptor } from './app/auth/auth-http-interceptor.service';
-import { ENVIRONMENT } from './app/common/models/environment.model';
-import { translocoProviderOptions } from './app/common/transloco/transloco.config';
+import { authHttpInterceptor } from '@plants-app/auth';
+import { ENVIRONMENT } from '@plants-app/infra';
+import { translocoProviderOptions } from './app/transloco/transloco.config';
 import { environment } from './environments/environment';
 
 if (environment.production) {
