@@ -5,11 +5,13 @@ import { exhaustMap, from, Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { ServerResponseBase } from '@plants-app/shared';
 import { SignInFormFields, SignInResponse } from './sign-in/models/sign-in.interface';
+import { UserService } from './user/services/user.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private http = inject(HttpClient);
   private storage = inject(Storage);
+  private userService = inject(UserService);
 
   async getAuthToken(): Promise<string> {
     return await this.storage.get('authToken');
@@ -21,8 +23,11 @@ export class AuthService {
 
   signIn(value: SignInFormFields): Observable<SignInResponse> {
     return this.http.post<SignInResponse>('/api/auth/sign-in', value).pipe(
-      tap(response => {
+      tap((response: SignInResponse) => {
         this.validateSignInResponse(response);
+      }),
+      tap(async (response: SignInResponse) => {
+        await this.userService.setUser(response.user);
       }),
       catchError(response => throwError(() => this.extractResponseError(response))),
     );
