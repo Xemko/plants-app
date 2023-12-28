@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '@plants-app/auth';
-import { plantsByRoomResolver } from '../plants/services/plants-by-room.resolver';
-import { PlantsService } from '../plants/services/plants.service';
+import { plantsByRoomResolver, PlantsService } from '@plants-app/plants';
 import { TabsPage } from './tabs.page';
 
 export const routes: Routes = [
