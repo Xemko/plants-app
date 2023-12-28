@@ -13,8 +13,7 @@ import {
 import { TranslocoPipe } from '@ngneat/transloco';
 import { addIcons } from 'ionicons';
 import { caretDownCircle, caretUpCircle } from 'ionicons/icons';
-import { PlantsByRoomMap } from '../plants/models/plant.interface';
-import { PlantsListComponent } from '../plants/plants-list/plants-list.component';
+import { PlantsByRoomMap, PlantsListComponent } from '@plants-app/plants';
 import { DateSelectorComponent } from './date-selector/date-selector.component';
 
 @Component({

@@ -3,13 +3,20 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "@plants-app/auth": [
+        "dist/auth",
+        //        "projects/auth/src/public-api"
+      ],
       "@plants-app/infra": [
         "dist/infra",
 //         "projects/infra/src/public-api"
       ],
-      "@plants-app/auth": [
-        "dist/auth",
-//        "projects/auth/src/public-api"
+      "@plants-app/plants": [
+        "dist/plants",
+        //        "projects/plants/src/public-api"
+      ],
+      "plants": [
+        "dist/plants"
       ]
     },
     "baseUrl": "./",
