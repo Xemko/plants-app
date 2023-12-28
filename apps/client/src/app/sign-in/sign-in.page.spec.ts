@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage-angular';
 import { of, throwError } from 'rxjs';
 import { SignInService, SignInResponse, SignInResponseError } from '@plants-app/auth';
 import { ENVIRONMENT } from '@plants-app/shared';
-import { getTranslocoTestingModule } from '../transloco/transloco-testing.module';
+import { getTranslocoTestingModule } from '@plants-app/shared';
 
 import { SignInPage } from './sign-in.page';
 
