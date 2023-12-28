@@ -1,11 +1,12 @@
 import { ServerResponseBase } from '@plants-app/shared';
+import { User } from '../../user/models/user.interface';
 
 export interface SignInFormFields {
   phoneNumber: string;
 }
 
 export interface SignInResponse extends ServerResponseBase {
-  // TODO implement when server is ready
+  user: User;
 }
 
 export interface SignInResponseError extends ServerResponseBase {
