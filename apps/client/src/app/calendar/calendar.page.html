@@ -1,14 +1,23 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{ 'calendar.title' | transloco }}</ion-title>
-    <ion-title size="small">UserName's household</ion-title>
+    <ion-title>
+      {{ 'calendar.title' | transloco }}
+      <ng-container *ngIf="user$ | async as user">
+        <h6>{{ user.name + ('user.householdOf' | transloco | lowercase) }}</h6>
+      </ng-container>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense" class="ion-margin-bottom">
     <ion-toolbar>
-      <ion-title size="large">{{ 'calendar.title' | transloco }}</ion-title>
+      <ion-title size="large">
+        {{ 'calendar.title' | transloco }}
+        <ng-container *ngIf="user$ | async as user">
+          <h6>{{ user.name + ('user.householdOf' | transloco | lowercase) }}</h6>
+        </ng-container>
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 

@@ -23,5 +23,8 @@
     "ThursdayShort": "Thu",
     "FridayShort": "Fri",
     "SaturdayShort": "Sat"
+  },
+  "user": {
+    "householdOf": "'s household"
   }
 }
