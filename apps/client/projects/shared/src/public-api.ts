@@ -1,5 +1,5 @@
 /*
- * Public API Surface of infra
+ * Public API Surface of shared
  */
 
 export * from './lib/directives/first-error.pipe';

@@ -10,7 +10,7 @@ import { AppComponent } from './app/app.component';
 
 import { routes } from './app/app.routes';
 import { authHttpInterceptor } from '@plants-app/auth';
-import { ENVIRONMENT } from '@plants-app/infra';
+import { ENVIRONMENT } from '@plants-app/shared';
 import { translocoProviderOptions } from './app/transloco/transloco.config';
 import { environment } from './environments/environment';
 

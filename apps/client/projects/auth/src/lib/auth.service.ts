@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { exhaustMap, from, Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { ServerResponseBase } from '@plants-app/infra';
+import { ServerResponseBase } from '@plants-app/shared';
 import { SignInFormFields, SignInResponse } from './sign-in/models/sign-in.interface';
 
 @Injectable({ providedIn: 'root' })
