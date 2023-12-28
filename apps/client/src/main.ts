@@ -6,12 +6,12 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { provideTransloco } from '@ngneat/transloco';
-import { AppComponent } from './app/app.component';
-
-import { routes } from './app/app.routes';
 import { authHttpInterceptor } from '@plants-app/auth';
 import { ENVIRONMENT } from '@plants-app/shared';
-import { translocoProviderOptions } from './app/transloco/transloco.config';
+import { translocoProviderOptions } from '@plants-app/shared';
+
+import { AppComponent } from './app/app.component';
+import { routes } from './app/app.routes';
 import { environment } from './environments/environment';
 
 if (environment.production) {

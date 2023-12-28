@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Storage } from '@ionic/storage-angular';
 import { AppComponent } from './app.component';
-import { getTranslocoTestingModule } from './transloco/transloco-testing.module';
+import { getTranslocoTestingModule } from '@plants-app/shared';
 
 describe('AppComponent', () => {
   let component: AppComponent;
