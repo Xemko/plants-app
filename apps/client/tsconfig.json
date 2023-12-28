@@ -5,15 +5,15 @@
     "paths": {
       "@plants-app/auth": [
         "dist/auth",
-        //        "projects/auth/src/public-api"
+//                "projects/auth/src"
       ],
       "@plants-app/shared": [
         "dist/shared",
-//         "projects/shared/src/public-api"
+//         "projects/shared/src"
       ],
       "@plants-app/plants": [
         "dist/plants",
-        //        "projects/plants/src/public-api"
+        //        "projects/plants/src"
       ]
     },
     "baseUrl": "./",
