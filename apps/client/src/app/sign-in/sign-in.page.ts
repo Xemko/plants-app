@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { TranslocoPipe } from '@ngneat/transloco';
-import { ENVIRONMENT, FirstKeyPipe } from '@plants-app/infra';
+import { ENVIRONMENT, FirstKeyPipe } from '@plants-app/shared';
 import { SignInFormFields, SignInService, SignInResponseError, signInPhoneNumberValidator } from '@plants-app/auth';
 
 @Component({

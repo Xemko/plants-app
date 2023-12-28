@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Storage } from '@ionic/storage-angular';
 import { of, throwError } from 'rxjs';
 import { SignInService, SignInResponse, SignInResponseError } from '@plants-app/auth';
-import { ENVIRONMENT } from '@plants-app/infra';
+import { ENVIRONMENT } from '@plants-app/shared';
 import { getTranslocoTestingModule } from '../transloco/transloco-testing.module';
 
 import { SignInPage } from './sign-in.page';
