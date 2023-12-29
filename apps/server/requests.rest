@@ -23,19 +23,20 @@ Content-Type: application/json
 }
 ###
 POST http://localhost:3000/api/plants/
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTdlZmY3M2EzZjU5NWI2ZGUxNTk4MWIiLCJpYXQiOjE3MDI4ODM5MzB9.k_gRfBTfAA6BcwxrRG2Y-heIOE-PP9srMgbDkQ7W33I
 Content-Type: application/json
 
 {
-    "name": "notCactus",
-    "description": "notCactus is a plant",
-    "waterFrequency" : 1,
+    "name": "notFicus",
+    "description": "notFicus is a plant",
+    "waterFrequency" : 3,
     "createdDate": "",
     "lastWateredDate": "",
     "nextWatering": "",
     "image": "",
     "room": "",
     "status": "",
-    "userId": "658b001a567c1f5e73e13560"
+    "userId": "657cf041a2328d1b60592bd8"
 }
 ###
 GET http://localhost:3000/api/plants/
@@ -47,19 +48,17 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/plants
-
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1N2NmMDQxYTIzMjhkMWI2MDU5MmJkOCIsImlhdCI6MTcwMzg1MzYwNn0.27dT6t_UAqDPgZFAFRbKK-Jgm-xPFxUay9DaxubSxuc
 ###
-PUT http://localhost:3000/api/plants/6589f6af73d64a21e5ad5623
+PUT http://localhost:3000/api/plants/658ac555d4b082717d44d72f
 Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1N2NmMDQxYTIzMjhkMWI2MDU5MmJkOCIsImlhdCI6MTcwMzYyMzQ1NH0.iD4S-VkUZ27bC6aLJzP1Hx6XEE6qNQrA5PYX6irFqF0
 
 {
-    "name": "notACactus",
-    "description": "Cactus is a plant",
-    "image": "placeholder",
-    "waterFrequency" : 1,
-    "userId": "657cf041a2328d1b60592bd8",
-    "room": "Kitchen"
+    "name": "BigCactus"
 }
 
+
 ###
-DELETE http://localhost:3000/api/plants/6589f6af73d64a21e5ad5623
+DELETE http://localhost:3000/api/plants/658afee42a2073c6b8b5304e
+x-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1N2NmMDQxYTIzMjhkMWI2MDU5MmJkOCIsImlhdCI6MTcwMzYyMzQ1NH0.iD4S-VkUZ27bC6aLJzP1Hx6XEE6qNQrA5PYX6irFqF0
