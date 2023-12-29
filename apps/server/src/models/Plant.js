@@ -22,9 +22,9 @@ const PlantSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-    nextWatering: {
+    nextWatering: [{
         type: Date,
-    },
+    }],
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'User'
@@ -44,14 +44,17 @@ const PlantSchema = new Schema({
 
 });
 
-// PlantSchema.pre('save', function(next) {
-//     if (this.waterFrequency) {
-//         const nextWateringDate = new Date(this.lastWatered);
-//         nextWateringDate.setDate(nextWateringDate.getDate() + this.waterFrequency);
-//         this.nextWatering = nextWateringDate;
-//     }
-//     next();
-// });
+PlantSchema.pre('save', function(next) {
+    if (this.waterFrequency) {
+        const daysInWeek = 7;
+        this.nextWatering = Array.from({length: this.waterFrequency}, (_, i) => {
+        const nextWateringDate = new Date(this.lastWatered);
+        nextWateringDate.setDate(nextWateringDate.getDate() + Math.ceil(daysInWeek / this.waterFrequency) * (i + 1));
+        return nextWateringDate;
+    });
+}
+    next();
+});
 
 const Plant = model("Plant", PlantSchema);
 module.exports = Plant;

@@ -7,25 +7,18 @@ const createPlant = async (plantData) => {
     return plant;
 }
 
-// const getPlant = async (plantName) => {
-//     return await Plant.findOne({name: plantName});
-// }
 const getPlantsByUserId = async (userId) => {
-    const plants = await Plant.find({userId});
-    return plants;
+    return await Plant.find({userId});
 }
 const updatePlantById = async (plantId, plantData) => {
-    const updatedPlant = await Plant.findByIdAndUpdate(plantId, plantData, {new: true});
-    return updatedPlant;
+    return await Plant.findByIdAndUpdate(plantId, plantData, {new: true});
 }
 const deletePlantById = async (plantId) => {
-    const deletedPlant = await Plant.findByIdAndDelete(plantId);
-    return deletedPlant;
+    return await Plant.findByIdAndDelete(plantId); 
 }
 
 module.exports = {
     createPlant,
-    // getPlant,
     getPlantsByUserId,
     updatePlantById,  
     deletePlantById

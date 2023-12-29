@@ -43,7 +43,7 @@ const auth = async (req, res, next) => {
     try {
         const decoded = jwt.verify(authToken, process.env.JWT_PRIVATE_KEY);
         req.user = decoded;
-        next();
+        next(); 
     } catch (ex) {
         return res.status(401).json({ code: 401, message: 'Invalid token.' });
     }
