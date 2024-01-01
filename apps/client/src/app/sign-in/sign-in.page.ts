@@ -27,6 +27,9 @@ export class SignInPage {
   submit(): void {
     if (this.form.valid) {
       this.signInService.submit(this.form.value).subscribe({
+        next: () => {
+          this.form.reset();
+        },
         error: (response: SignInResponseError) => {
           const errors = this.signInService.getValidationErrorsByResponse(response);
           this.form.get('phoneNumber')?.setErrors(errors);

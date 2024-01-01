@@ -14,7 +14,7 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
     map((hasAccess: boolean) => {
       if (hasAccess) {
         if (url === '/sign-in') {
-          return router.createUrlTree([ '/app' ]);
+          return router.createUrlTree([ '/' ]);
         }
       } else {
         if (url !== '/sign-in') {

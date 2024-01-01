@@ -33,6 +33,11 @@ export class AuthService {
     );
   }
 
+  async signOut(): Promise<void> {
+    await this.storage.remove('authToken');
+    await this.storage.remove('user');
+  }
+
   validate(): Observable<ServerResponseBase> {
     return this.http.get<ServerResponseBase>('/api/auth/validate').pipe(
       catchError(response => throwError(() => this.extractResponseError(response))),

@@ -37,7 +37,7 @@ export class SignInService {
   }
 
   private navigateToTheApp(): Observable<boolean> {
-    return from(this.router.navigateByUrl('/app'));
+    return from(this.router.navigateByUrl('/'));
   }
 
 }
