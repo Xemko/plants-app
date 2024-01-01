@@ -1,0 +1,17 @@
+.user-container {
+  height: 13rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .user-avatar {
+    width: 100px;
+    height: 100px;
+    background-color: var(--ion-color-dark-shade);
+    background-image: url('/assets/default-user-avatar.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+  }
+}

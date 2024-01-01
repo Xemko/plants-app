@@ -15,6 +15,9 @@
     },
     "next": "Next"
   },
+  "menu": {
+    "signOut": "Sign Out"
+  },
   "dates": {
     "SundayShort": "Sun",
     "MondayShort": "Mon",
