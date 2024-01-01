@@ -8,12 +8,8 @@ export const routes: Routes = [
     canActivate: [ authGuard ],
   },
   {
-    path: 'app',
-    loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
-  },
-  {
     path: '',
-    redirectTo: '/sign-in',
-    pathMatch: 'full',
+    loadChildren: () =>
+      import('./default-layout/default-layout.routes').then((m) => m.routes),
   },
 ];
