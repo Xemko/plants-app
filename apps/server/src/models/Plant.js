@@ -45,10 +45,6 @@ const PlantSchema = new Schema({
         type: Boolean,
         default: false,
     },
-    avatar : {
-        type: String,
-        default : "",
-    }
 
 });
 
