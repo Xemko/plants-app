@@ -31,7 +31,7 @@ describe('authGuard', () => {
         canActivate: [ authGuard ],
       },
       {
-        path: 'app',
+        path: '',
         component: AppComponent,
         canActivate: [ authGuard ],
       },
@@ -59,7 +59,7 @@ describe('authGuard', () => {
     expect(router.url).toBe('/sign-in');
   });
 
-  it('should not allow to activate the /sign-in route and redirect to the /app route, when has the access', async () => {
+  it('should not allow to activate the /sign-in route and redirect to the / route, when has the access', async () => {
     // GIVEN
     authService.hasAccess.and.returnValue(of(true));
 
@@ -67,29 +67,29 @@ describe('authGuard', () => {
     await RouterTestingHarness.create('/sign-in')
 
     // THEN
-    expect(router.url).toBe('/app');
+    expect(router.url).toBe('/');
   });
 
-  it('should not allow to activate the /app route and redirect to the /sign-in, when has no access', async () => {
+  it('should not allow to activate the / route and redirect to the /sign-in, when has no access', async () => {
     // GIVEN
     authService.hasAccess.and.returnValue(of(false));
 
     // WHEN
-    await RouterTestingHarness.create('/app');
+    await RouterTestingHarness.create('/');
 
     // THEN
     expect(router.url).toBe('/sign-in');
   });
 
-  it('should allow to activate the /app route, when has the access', async () => {
+  it('should allow to activate the / route, when has the access', async () => {
     // GIVEN
     authService.hasAccess.and.returnValue(of(true));
 
     // WHEN
-    await RouterTestingHarness.create('/app')
+    await RouterTestingHarness.create('/')
 
     // THEN
-    expect(router.url).toBe('/app');
+    expect(router.url).toBe('/');
   });
 
 });
