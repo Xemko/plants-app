@@ -11,7 +11,12 @@ const UserSchema = new Schema({
     },
     phoneNumber: {
         type: String, unique: true, required: true,
-    }})
+    },
+    avatar : {
+        type: String,
+        default : ""
+    },
+    })
 
 const User = model('User', UserSchema);
 
