@@ -41,6 +41,14 @@ const PlantSchema = new Schema({
         type: Number,
         default: 0,
     },
+    snoozed: {
+        type: Boolean,
+        default: false,
+    },
+    avatar : {
+        type: String,
+        default : "",
+    }
 
 });
 
