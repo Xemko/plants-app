@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { UserService } from '@plants-app/auth';
 import { getTranslocoTestingModule } from '@plants-app/shared';
+import { of } from 'rxjs';
 
 import { CalendarPage } from './calendar.page';
 
@@ -11,6 +13,12 @@ describe('CalendarPage', () => {
     TestBed.configureTestingModule({
       providers: [
         getTranslocoTestingModule(),
+        {
+          provide: UserService,
+          useValue: {
+            getUser: () => of({})
+          }
+        },
       ]
     });
   });

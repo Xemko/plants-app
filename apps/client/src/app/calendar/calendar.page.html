@@ -22,13 +22,14 @@
   </ion-header>
 
   <app-date-selector
-    [currentDate]="currentDate"
+    [data]="data"
+    (daySelected)="daySelected($event)"
   ></app-date-selector>
 
-  <div class="selected-date-title ion-margin-top">{{ currentDate | date: 'EEEE' }}</div>
+  <div class="selected-date-title ion-margin-top">{{ selectedDay?.date | date: 'EEEE' }}</div>
 
   <ion-accordion-group class="ion-margin-top">
-    @for (item of plants | keyvalue; track item) {
+    @for (item of selectedDay?.plants | keyvalue; track item) {
       <ion-accordion
         [value]="item.key"
         toggleIcon="caret-down-circle"

@@ -1,20 +1,17 @@
-export const getDaysOfWeekTitles = (): string[] => ([
-  'dates.SundayShort',
-  'dates.MondayShort',
-  'dates.TuesdayShort',
-  'dates.WednesdayShort',
-  'dates.ThursdayShort',
-  'dates.FridayShort',
-  'dates.SaturdayShort',
-]);
+import { areLocaleDatesEqual } from '@plants-app/shared';
+import { CalendarDay } from '../models/calendar.interface';
 
-export const getWeekDays = (current: Date): { value: number; }[] => {
-  const result: { value: number; }[] = [];
+export const getWeekDays = (current: Date, events: Date[]): CalendarDay[] => {
+  const result: CalendarDay[] = [];
   // Starting Sunday
   current.setDate((current.getDate() - current.getDay() ));
-  for (var i = 0; i < 7; i++) {
-    result.push({ value: new Date(current).getDate() });
-    current.setDate(current.getDate() +1);
+  for (let i = 0; i < 7; i++) {
+    const date = new Date(current);
+    result.push({
+      date,
+      hasEvents: events.some(areLocaleDatesEqual(date)),
+    });
+    current.setDate(current.getDate() + 1);
   }
   return result;
 }
