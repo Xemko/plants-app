@@ -1,6 +1,6 @@
 import { getWeekDays } from './date-time.utils';
 
-describe('dateTimeUtils', () => {
+describe('DateTimeUtil', () => {
 
   describe('getWeekDays', () => {
 
@@ -8,17 +8,17 @@ describe('dateTimeUtils', () => {
       // GIVEN
       const mockLastDayOfMonth = new Date('2023-01-31');
       const expected = [
-        { value: 29 },
-        { value: 30 },
-        { value: 31 },
-        { value: 1 },
-        { value: 2 },
-        { value: 3 },
-        { value: 4 },
+        { date: new Date('2023-01-29'), hasEvents: false },
+        { date: new Date('2023-01-30'), hasEvents: false },
+        { date: new Date('2023-01-31'), hasEvents: false },
+        { date: new Date('2023-02-01'), hasEvents: false },
+        { date: new Date('2023-02-02'), hasEvents: false },
+        { date: new Date('2023-02-03'), hasEvents: false },
+        { date: new Date('2023-02-04'), hasEvents: false },
       ];
 
       // WHEN
-      const result = getWeekDays(mockLastDayOfMonth);
+      const result = getWeekDays(mockLastDayOfMonth, []);
 
       // THEN
       expect(result).toEqual(expected);
@@ -28,17 +28,17 @@ describe('dateTimeUtils', () => {
       // GIVEN
       const mockMiddleOfMonth = new Date('2023-01-15');
       const expected = [
-        { value: 15 },
-        { value: 16 },
-        { value: 17 },
-        { value: 18 },
-        { value: 19 },
-        { value: 20 },
-        { value: 21 },
+        { date: new Date('2023-01-15'), hasEvents: false },
+        { date: new Date('2023-01-16'), hasEvents: false },
+        { date: new Date('2023-01-17'), hasEvents: false },
+        { date: new Date('2023-01-18'), hasEvents: false },
+        { date: new Date('2023-01-19'), hasEvents: false },
+        { date: new Date('2023-01-20'), hasEvents: false },
+        { date: new Date('2023-01-21'), hasEvents: false },
       ];
 
       // WHEN
-      const result = getWeekDays(mockMiddleOfMonth);
+      const result = getWeekDays(mockMiddleOfMonth, []);
 
       // THEN
       expect(result).toEqual(expected);

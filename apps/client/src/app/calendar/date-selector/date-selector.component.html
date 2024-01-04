@@ -1,5 +1,7 @@
 <div class="calendar-header">
-  <ion-title class="calendar-date-title">{{ currentDate | date: 'MMMM YYYY' }}</ion-title>
+  @if (data) {
+    <h6 class="calendar-date-title">{{ data.currentDate | date: 'MMMM YYYY' }}</h6>
+  }
   <div class="calendar-days-of-week">
     @for (title of daysOfWeekTitles; track title) {
       <div class="day-of-week">{{ title | transloco }}</div>
@@ -10,10 +12,13 @@
 <div class="calendar-body">
   <div class="calendar-month">
     <div class="calendar-month-grid">
-      @for (day of daysList; track day.value) {
+      @for (day of daysList; track day.date.getDate()) {
         <div
-          [ngClass]="{ 'calendar-day-wrapper': true, 'selected': false }">
-          <button class="calendar-day">{{ day.value }}</button>
+          [ngClass]="{ 'calendar-day-wrapper': true, 'has-events': day.hasEvents, 'selected': isDaySelected(day) }">
+          <button
+          class="calendar-day"
+          [disabled]="!day.hasEvents"
+          (click)="selectDay(day)">{{ day.date.getDate() }}</button>
         </div>
       }
     </div>

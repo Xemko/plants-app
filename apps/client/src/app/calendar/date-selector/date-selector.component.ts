@@ -1,8 +1,18 @@
 import { DatePipe, NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import { IonTitle } from '@ionic/angular/standalone';
 import { TranslocoPipe } from '@ngneat/transloco';
-import { getDaysOfWeekTitles, getWeekDays } from '../services/date-time.utils';
+import { getDaysOfWeekTitles } from '@plants-app/shared';
+import { CalendarDay } from '../models/calendar.interface';
+import { getWeekDays } from '../services/date-time.utils';
 
 @Component({
   selector: 'app-date-selector',
@@ -13,15 +23,27 @@ import { getDaysOfWeekTitles, getWeekDays } from '../services/date-time.utils';
   imports: [ TranslocoPipe, DatePipe, IonTitle, NgClass ]
 })
 export class DateSelectorComponent implements OnChanges {
-  @Input({ required: true }) public currentDate: Date = new Date();
-  
+  @Input({ required: true }) public data: {currentDate: Date; events: any[]; } | null = null;
+  @Output() public daySelected = new EventEmitter<CalendarDay | null>();
+
+  public selectedDate: CalendarDay | null = null;
   public daysOfWeekTitles: string[] = getDaysOfWeekTitles();
-  public daysList: { value: number; }[] = [];
+  public daysList: CalendarDay[] = [];
 
   ngOnChanges(changes:SimpleChanges): void {
-    if ('currentDate' in changes) {
-      this.daysList = getWeekDays(this.currentDate);
+    this.daysList = [];
+    if ('data' in changes && this.data) {
+      this.daysList = getWeekDays(this.data.currentDate, this.data.events);
     }
+  }
+
+  selectDay(day: CalendarDay): void {
+    this.selectedDate = this.isDaySelected(day) ? null : day;
+    this.daySelected.emit(this.selectedDate);
+  }
+
+  isDaySelected(day: CalendarDay): boolean {
+    return this.selectedDate?.date.getDate() === day.date.getDate();
   }
 
 }

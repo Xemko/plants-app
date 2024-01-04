@@ -5,10 +5,11 @@ export interface Plant {
   name: string;
   image: string;
   room: string;
+  nextWatering: Date[];
 }
 
 export interface PlantsResponse extends ServerResponseBase {
   plants: Plant[];
 }
 
-export type PlantsByRoomMap = Map<string, Array<Plant>>;
+export type PlantsByRoomMap = Map<Plant['room'], Array<Plant>>;
