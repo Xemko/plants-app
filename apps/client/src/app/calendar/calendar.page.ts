@@ -2,7 +2,7 @@ import { AsyncPipe, DatePipe, KeyValuePipe, LowerCasePipe, NgIf, UpperCasePipe }
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input } from '@angular/core';
 import {
   IonAccordion,
-  IonAccordionGroup, IonBadge,
+  IonAccordionGroup,
   IonContent,
   IonHeader,
   IonIcon,
@@ -13,7 +13,7 @@ import {
 } from '@ionic/angular/standalone';
 import { TranslocoPipe } from '@ngneat/transloco';
 import { User, UserService } from '@plants-app/auth';
-import { getNextWateringPlantsByRoom, PlantsListComponent } from '@plants-app/plants';
+import { getNextWateringPlantsByRoom, PlantCardItemComponent, PlantsListComponent } from '@plants-app/plants';
 import { addIcons } from 'ionicons';
 import { alarmOutline, caretDownCircle, caretUpCircle, waterOutline } from 'ionicons/icons';
 import { Observable } from 'rxjs';
@@ -31,7 +31,8 @@ register();
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [ IonHeader, IonToolbar, IonTitle, IonContent, IonAccordionGroup, IonAccordion, IonLabel, IonIcon, IonItem,
-    DatePipe, TranslocoPipe, DateSelectorComponent, PlantsListComponent, KeyValuePipe, AsyncPipe, LowerCasePipe, NgIf, IonBadge, UpperCasePipe ],
+    KeyValuePipe, AsyncPipe, LowerCasePipe, UpperCasePipe, NgIf, DatePipe, TranslocoPipe,
+    DateSelectorComponent, PlantsListComponent, PlantCardItemComponent, ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class CalendarPage {

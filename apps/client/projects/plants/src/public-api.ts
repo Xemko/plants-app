@@ -3,6 +3,7 @@
  */
 
 export * from './lib/models/plant.interface';
+export * from './lib/plant-card-item/plant-card-item.component';
 export * from './lib/plant-item/plant-item.component';
 export * from './lib/plants-list/plants-list.component';
 export * from './lib/services/plants.service';
