@@ -2,7 +2,7 @@ import { PlantsByRoomMap } from '@plants-app/plants';
 
 export interface CalendarDay {
   date: Date;
-  hasEvents: boolean;
+  events: Date[];
 }
 
 export interface CalendarSelectedDay {

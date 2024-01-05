@@ -1,8 +1,8 @@
-import { AsyncPipe, DatePipe, KeyValuePipe, LowerCasePipe, NgIf } from '@angular/common';
+import { AsyncPipe, DatePipe, KeyValuePipe, LowerCasePipe, NgIf, UpperCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input } from '@angular/core';
 import {
   IonAccordion,
-  IonAccordionGroup,
+  IonAccordionGroup, IonBadge,
   IonContent,
   IonHeader,
   IonIcon,
@@ -31,7 +31,7 @@ register();
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [ IonHeader, IonToolbar, IonTitle, IonContent, IonAccordionGroup, IonAccordion, IonLabel, IonIcon, IonItem,
-    DatePipe, TranslocoPipe, DateSelectorComponent, PlantsListComponent, KeyValuePipe, AsyncPipe, LowerCasePipe, NgIf ],
+    DatePipe, TranslocoPipe, DateSelectorComponent, PlantsListComponent, KeyValuePipe, AsyncPipe, LowerCasePipe, NgIf, IonBadge, UpperCasePipe ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class CalendarPage {

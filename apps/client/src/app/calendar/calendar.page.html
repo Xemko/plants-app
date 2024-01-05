@@ -26,8 +26,6 @@
     (daySelected)="daySelected($event)"
   ></app-date-selector>
 
-  <div class="selected-date-title ion-margin-top ion-text-center">{{ selectedDay?.date | date: 'EEEE' }}</div>
-
   <ion-accordion-group class="ion-margin-vertical">
     @for (item of selectedDay?.plants | keyvalue; track item) {
       <ion-accordion
@@ -46,12 +44,11 @@
         </div>
       </ion-accordion>
     } @empty {
-      <div class="ion-text-center">There are no plants.</div>
+      <div class="ion-text-center">{{ 'calendar.noSelectedPlants' | transloco }}</div>
     }
   </ion-accordion-group>
 
-  <div>
-    <p class="ion-margin-vertical">Plants</p>
+    <p class="ion-margin-vertical">{{ 'calendar.plants' | transloco | uppercase }}</p>
     <swiper-container [slidesPerView]="2.33" [spaceBetween]="18">
       @for (plant of data?.plants; track plant.id) {
         <swiper-slide>
@@ -59,15 +56,15 @@
             <div>
               <img [src]="plant.image" [alt]="plant.name" class="plant-img">
             </div>
-            <small>{{ plant.nextWatering[0] | date: 'MMMM d' }}</small>
-            <h5>{{ plant.nextWatering[0] | date: 'HH:mm a' }}</h5>
+            <h5>{{ plant.nextWatering[0] | date: 'HH:mm a' : 'GMT' }}</h5>
+            @for (nextDate of plant.nextWatering; track nextDate; let isLast = $last) {
+              <small class="next-watering-date">{{ (nextDate | date: 'E' | uppercase) + (isLast ? '' : ',')}} </small>
+            }
             <div class="buttons-container-space-around ion-margin-top">
-              <ion-icon name="alarm-outline" size="large"></ion-icon>
-              <ion-icon name="water-outline" size="large"></ion-icon>
+
             </div>
           </div>
         </swiper-slide>
       }
     </swiper-container>
-  </div>
 </ion-content>

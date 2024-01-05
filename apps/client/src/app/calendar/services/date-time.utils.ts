@@ -9,7 +9,7 @@ export const getWeekDays = (current: Date, events: Date[]): CalendarDay[] => {
     const date = new Date(current);
     result.push({
       date,
-      hasEvents: events.some(areLocaleDatesEqual(date)),
+      events: events.filter(areLocaleDatesEqual(date)),
     });
     current.setDate(current.getDate() + 1);
   }
