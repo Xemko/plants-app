@@ -103,7 +103,7 @@
       .total-events {
         position: absolute;
         top: -0.5rem;
-        background-color: black;
+        background-color: var(--ion-color-dark-contrast);
         border: 1px solid var(--ion-color-success);
         border-radius: 0.5rem;
         padding: 0 0.5rem;

@@ -1,0 +1,7 @@
+<swiper-container [slidesPerView]="2.33" [spaceBetween]="18">
+  @for (plant of plants; track plant.id) {
+    <swiper-slide>
+      <app-plant-card-item [plant]=plant></app-plant-card-item>
+    </swiper-slide>
+  }
+</swiper-container>

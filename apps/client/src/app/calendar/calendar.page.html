@@ -2,9 +2,9 @@
   <ion-toolbar>
     <ion-title>
       {{ 'calendar.title' | transloco }}
-      <ng-container *ngIf="user$ | async as user">
+      @if (user$ | async; as user) {
         <h6>{{ user.name + ('user.householdOf' | transloco | lowercase) }}</h6>
-      </ng-container>
+      }
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,9 +14,9 @@
     <ion-toolbar>
       <ion-title size="large">
         {{ 'calendar.title' | transloco }}
-        <ng-container *ngIf="user$ | async as user">
+        @if (user$ | async; as user) {
           <h6>{{ user.name + ('user.householdOf' | transloco | lowercase) }}</h6>
-        </ng-container>
+        }
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -50,11 +50,5 @@
 
   <!-- Plants List -->
   <p class="ion-margin-vertical">{{ 'calendar.plants' | transloco | uppercase }}</p>
-  <swiper-container [slidesPerView]="2.33" [spaceBetween]="18">
-    @for (plant of data?.plants; track plant.id) {
-      <swiper-slide>
-        <app-plant-card-item [plant]=plant></app-plant-card-item>
-      </swiper-slide>
-    }
-  </swiper-container>
+  <app-plants-swiper-cards [plants]="data?.plants || []"></app-plants-swiper-cards>
 </ion-content>
