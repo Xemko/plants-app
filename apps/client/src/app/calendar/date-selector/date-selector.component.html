@@ -14,11 +14,16 @@
     <div class="calendar-month-grid">
       @for (day of daysList; track day.date.getDate()) {
         <div
-          [ngClass]="{ 'calendar-day-wrapper': true, 'has-events': day.hasEvents, 'selected': isDaySelected(day) }">
+          [ngClass]="{ 'calendar-day-wrapper': true, 'has-events': day.events.length > 0, 'selected': isDaySelected(day) }">
+          @if(day.events.length > 0) {
+            <small class="total-events">{{ day.events.length }}</small>
+          }
           <button
-          class="calendar-day"
-          [disabled]="!day.hasEvents"
-          (click)="selectDay(day)">{{ day.date.getDate() }}</button>
+            class="calendar-day"
+            [disabled]="day.events.length === 0"
+            (click)="selectDay(day)"
+          >{{ day.date.getDate() }}
+          </button>
         </div>
       }
     </div>

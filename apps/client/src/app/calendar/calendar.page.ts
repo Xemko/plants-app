@@ -1,28 +1,19 @@
-import { AsyncPipe, DatePipe, KeyValuePipe, LowerCasePipe, NgIf } from '@angular/common';
+import { AsyncPipe, LowerCasePipe, NgIf, UpperCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input } from '@angular/core';
-import {
-  IonAccordion,
-  IonAccordionGroup,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { TranslocoPipe } from '@ngneat/transloco';
 import { User, UserService } from '@plants-app/auth';
-import { getNextWateringPlantsByRoom, PlantsListComponent } from '@plants-app/plants';
+import {
+  getNextWateringPlantsByRoom,
+  PlantsAccordionGroupComponent,
+  PlantsSwiperCardsComponent
+} from '@plants-app/plants';
 import { addIcons } from 'ionicons';
-import { alarmOutline, caretDownCircle, caretUpCircle, waterOutline } from 'ionicons/icons';
+import { caretDownCircle, caretUpCircle } from 'ionicons/icons';
 import { Observable } from 'rxjs';
-import { register } from 'swiper/element/bundle';
 import { CalendarResolvedData } from './calendar.routes';
 import { DateSelectorComponent } from './date-selector/date-selector.component';
 import { CalendarDay, CalendarSelectedDay } from './models/calendar.interface';
-
-register();
 
 @Component({
   selector: 'app-calendar',
@@ -30,8 +21,10 @@ register();
   styleUrls: [ 'calendar.page.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ IonHeader, IonToolbar, IonTitle, IonContent, IonAccordionGroup, IonAccordion, IonLabel, IonIcon, IonItem,
-    DatePipe, TranslocoPipe, DateSelectorComponent, PlantsListComponent, KeyValuePipe, AsyncPipe, LowerCasePipe, NgIf ],
+  imports: [
+    IonHeader, IonToolbar, IonTitle, IonContent, AsyncPipe, NgIf, LowerCasePipe, UpperCasePipe, TranslocoPipe,
+    DateSelectorComponent, PlantsAccordionGroupComponent, PlantsSwiperCardsComponent,
+  ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class CalendarPage {
@@ -43,7 +36,7 @@ export class CalendarPage {
   public selectedDay: CalendarSelectedDay | null = null;
 
   constructor() {
-    addIcons({ caretDownCircle, caretUpCircle, alarmOutline, waterOutline });
+    addIcons({ caretDownCircle, caretUpCircle });
   }
 
   daySelected(day: CalendarDay | null): void {

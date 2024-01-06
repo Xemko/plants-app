@@ -2,9 +2,9 @@
   <ion-toolbar>
     <ion-title>
       {{ 'calendar.title' | transloco }}
-      <ng-container *ngIf="user$ | async as user">
+      @if (user$ | async; as user) {
         <h6>{{ user.name + ('user.householdOf' | transloco | lowercase) }}</h6>
-      </ng-container>
+      }
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,9 +14,9 @@
     <ion-toolbar>
       <ion-title size="large">
         {{ 'calendar.title' | transloco }}
-        <ng-container *ngIf="user$ | async as user">
+        @if (user$ | async; as user) {
           <h6>{{ user.name + ('user.householdOf' | transloco | lowercase) }}</h6>
-        </ng-container>
+        }
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -26,48 +26,9 @@
     (daySelected)="daySelected($event)"
   ></app-date-selector>
 
-  <div class="selected-date-title ion-margin-top ion-text-center">{{ selectedDay?.date | date: 'EEEE' }}</div>
+  <app-plants-accordion-group [plants]="selectedDay?.plants"></app-plants-accordion-group>
 
-  <ion-accordion-group class="ion-margin-vertical">
-    @for (item of selectedDay?.plants | keyvalue; track item) {
-      <ion-accordion
-        [value]="item.key"
-        toggleIcon="caret-down-circle"
-        toggleIconSlot="start"
-      >
-        <ion-item slot="header" color="light">
-          <ion-label>{{ item.key }}</ion-label>
-        </ion-item>
-        <div class="ion-padding" slot="content">
-          <app-plants-list
-            [plants]="item.value"
-          >
-          </app-plants-list>
-        </div>
-      </ion-accordion>
-    } @empty {
-      <div class="ion-text-center">There are no plants.</div>
-    }
-  </ion-accordion-group>
-
-  <div>
-    <p class="ion-margin-vertical">Plants</p>
-    <swiper-container [slidesPerView]="2.33" [spaceBetween]="18">
-      @for (plant of data?.plants; track plant.id) {
-        <swiper-slide>
-          <div class="plant-card-item">
-            <div>
-              <img [src]="plant.image" [alt]="plant.name" class="plant-img">
-            </div>
-            <small>{{ plant.nextWatering[0] | date: 'MMMM d' }}</small>
-            <h5>{{ plant.nextWatering[0] | date: 'HH:mm a' }}</h5>
-            <div class="buttons-container-space-around ion-margin-top">
-              <ion-icon name="alarm-outline" size="large"></ion-icon>
-              <ion-icon name="water-outline" size="large"></ion-icon>
-            </div>
-          </div>
-        </swiper-slide>
-      }
-    </swiper-container>
-  </div>
+  <!-- Plants List -->
+  <p class="ion-margin-vertical">{{ 'calendar.plants' | transloco | uppercase }}</p>
+  <app-plants-swiper-cards [plants]="data?.plants"></app-plants-swiper-cards>
 </ion-content>

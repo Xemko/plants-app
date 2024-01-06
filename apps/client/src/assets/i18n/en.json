@@ -3,7 +3,9 @@
     "title": "Dashboard"
   },
   "calendar": {
-    "title": "Calendar"
+    "title": "Calendar",
+    "noSelectedPlants": "There are no plants to display.",
+    "plants": "Plants"
   },
   "signIn": {
     "title": "Sign In",
