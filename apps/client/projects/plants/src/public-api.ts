@@ -3,6 +3,7 @@
  */
 
 export * from './lib/models/plant.interface';
+export * from './lib/plants-accordion-group/plants-accordion-group.component';
 export * from './lib/plants-swiper-cards/plants-swiper-cards.component';
 export * from './lib/plant-card-item/plant-card-item.component';
 export * from './lib/plant-item/plant-item.component';

@@ -1,18 +1,13 @@
-import { AsyncPipe, KeyValuePipe, LowerCasePipe, NgIf, UpperCasePipe } from '@angular/common';
+import { AsyncPipe, LowerCasePipe, NgIf, UpperCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input } from '@angular/core';
-import {
-  IonAccordion,
-  IonAccordionGroup,
-  IonContent,
-  IonHeader,
-  IonItem,
-  IonLabel,
-  IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { TranslocoPipe } from '@ngneat/transloco';
 import { User, UserService } from '@plants-app/auth';
-import { getNextWateringPlantsByRoom, PlantsListComponent, PlantsSwiperCardsComponent } from '@plants-app/plants';
+import {
+  getNextWateringPlantsByRoom,
+  PlantsAccordionGroupComponent,
+  PlantsSwiperCardsComponent
+} from '@plants-app/plants';
 import { addIcons } from 'ionicons';
 import { caretDownCircle, caretUpCircle } from 'ionicons/icons';
 import { Observable } from 'rxjs';
@@ -27,9 +22,8 @@ import { CalendarDay, CalendarSelectedDay } from './models/calendar.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    IonHeader, IonToolbar, IonTitle, IonContent, IonAccordionGroup, IonAccordion, IonLabel, IonItem,
-    KeyValuePipe, AsyncPipe, NgIf, LowerCasePipe, UpperCasePipe, TranslocoPipe,
-    DateSelectorComponent, PlantsListComponent, PlantsSwiperCardsComponent,
+    IonHeader, IonToolbar, IonTitle, IonContent, AsyncPipe, NgIf, LowerCasePipe, UpperCasePipe, TranslocoPipe,
+    DateSelectorComponent, PlantsAccordionGroupComponent, PlantsSwiperCardsComponent,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })

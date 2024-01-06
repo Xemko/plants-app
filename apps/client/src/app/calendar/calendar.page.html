@@ -26,29 +26,9 @@
     (daySelected)="daySelected($event)"
   ></app-date-selector>
 
-  <ion-accordion-group class="ion-margin-vertical">
-    @for (item of selectedDay?.plants | keyvalue; track item) {
-      <ion-accordion
-        [value]="item.key"
-        toggleIcon="caret-down-circle"
-        toggleIconSlot="start"
-      >
-        <ion-item slot="header" color="light">
-          <ion-label>{{ item.key }}</ion-label>
-        </ion-item>
-        <div class="ion-padding" slot="content">
-          <app-plants-list
-            [plants]="item.value"
-          >
-          </app-plants-list>
-        </div>
-      </ion-accordion>
-    } @empty {
-      <div class="ion-text-center">{{ 'calendar.noSelectedPlants' | transloco }}</div>
-    }
-  </ion-accordion-group>
+  <app-plants-accordion-group [plants]="selectedDay?.plants"></app-plants-accordion-group>
 
   <!-- Plants List -->
   <p class="ion-margin-vertical">{{ 'calendar.plants' | transloco | uppercase }}</p>
-  <app-plants-swiper-cards [plants]="data?.plants || []"></app-plants-swiper-cards>
+  <app-plants-swiper-cards [plants]="data?.plants"></app-plants-swiper-cards>
 </ion-content>

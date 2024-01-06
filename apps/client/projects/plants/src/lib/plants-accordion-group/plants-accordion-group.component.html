@@ -1,0 +1,18 @@
+<ion-accordion-group class="ion-margin-vertical">
+  @for (item of plants | keyvalue; track item) {
+    <ion-accordion
+      [value]="item.key"
+      toggleIcon="caret-down-circle"
+      toggleIconSlot="start"
+    >
+      <ion-item slot="header" color="light">
+        <ion-label>{{ item.key }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <app-plants-list [plants]="item.value"></app-plants-list>
+      </div>
+    </ion-accordion>
+  } @empty {
+    <div class="ion-text-center">{{ 'calendar.noSelectedPlants' | transloco }}</div>
+  }
+</ion-accordion-group>
