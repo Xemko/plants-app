@@ -60,10 +60,22 @@ const deletePlantById = async (req, res) => {
     }
 }
 
+const getPlantById = async (req, res) => {
+    try {
+        const plantId = req.params.plantId;
+        const plant = await plantService.getPlantById(plantId);
+        return res.status(200).json({code: 200, message: 'Success', plant});
+    } catch (err) {
+        return res.status(500).json({code: 500, message: 'Internal server error'});
+    }
+
+}
+
 module.exports = {
     getPlant,
     createPlant,
     getPlantsByUserId,
     updatePlantById,
-    deletePlantById
+    deletePlantById, 
+    getPlantById
 }
