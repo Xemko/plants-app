@@ -17,9 +17,14 @@ const deletePlantById = async (plantId) => {
     return await Plant.findByIdAndDelete(plantId); 
 }
 
+const getPlantById = async (plantId) => {
+    return await Plant.findById(plantId);
+}
+
 module.exports = {
     createPlant,
     getPlantsByUserId,
     updatePlantById,  
-    deletePlantById
+    deletePlantById,
+    getPlantById
 }
