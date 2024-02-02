@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { alarmOutline, waterOutline } from 'ionicons/icons';
 import { Plant } from '../models/plant.interface';
+import { PlantsService } from '../services/plants.service';
 
 @Component({
   selector: 'app-plant-item',
@@ -14,14 +15,17 @@ import { Plant } from '../models/plant.interface';
     IonicModule
   ]
 })
-export class PlantItemComponent implements OnInit {
+export class PlantItemComponent {
+  private plantService = inject(PlantsService);
+
   @Input({ required: true }) public plant: Plant | undefined;
 
   constructor() {
     addIcons({ alarmOutline, waterOutline })
   }
 
-  ngOnInit() {
+  navigateToPlantDetails(plant: Plant): void {
+    this.plantService.navigateToPlantDetails(plant);
   }
 
 }

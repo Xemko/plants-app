@@ -15,14 +15,14 @@ export const routes: Routes = [
 
       },
       {
-        path: 'calendar',
+        path: 'plants',
         loadChildren: () =>
-          import('../calendar/calendar.routes').then((m) => m.routes),
+          import('../plants/plants.routes').then((m) => m.routes),
         canActivateChild: [ authGuard ],
       },
       {
         path: '',
-        redirectTo: '/calendar',
+        redirectTo: '/plants',
         pathMatch: 'full',
       },
     ],

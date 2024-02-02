@@ -1,6 +1,8 @@
-<div>
-  <img [src]="plant?.image" [alt]="plant?.name" class="plant-img">
-</div>
-<div>{{ plant?.name }}</div>
-<ion-icon name="alarm-outline" size="large"></ion-icon>
-<ion-icon name="water-outline" size="large"></ion-icon>
+@if (plant) {
+  <div (click)="navigateToPlantDetails(plant)">
+    <img [src]="plant.image" [alt]="plant.name" class="plant-img">
+  </div>
+  <div>{{ plant.name }}</div>
+  <ion-icon name="alarm-outline" size="large"></ion-icon>
+  <ion-icon name="water-outline" size="large"></ion-icon>
+}

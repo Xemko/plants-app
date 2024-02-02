@@ -7,6 +7,9 @@
     "noSelectedPlants": "There are no plants to display.",
     "plants": "Plants"
   },
+  "plants": {
+    "title": "Plants"
+  },
   "signIn": {
     "title": "Sign In",
     "description": "Enter your phone number to continue to the {{appName}}",
@@ -28,6 +31,9 @@
     "ThursdayShort": "Thu",
     "FridayShort": "Fri",
     "SaturdayShort": "Sat"
+  },
+  "plant": {
+    "about": "About"
   },
   "user": {
     "householdOf": "'s household"

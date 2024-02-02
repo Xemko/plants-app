@@ -19,7 +19,7 @@ import {
 } from '@ionic/angular/standalone';
 import { TranslocoPipe } from '@ngneat/transloco';
 import { addIcons } from 'ionicons';
-import { calendar, newspaper } from 'ionicons/icons';
+import { leaf, newspaper } from 'ionicons/icons';
 import { SignOutService, UserService } from '@plants-app/auth';
 
 @Component({
@@ -46,16 +46,16 @@ export class DefaultLayoutComponent {
       link: '/dashboard'
     },
     {
-      name: 'calendar',
-      icon: 'calendar',
-      label: 'calendar.title',
-      link: '/calendar',
+      name: 'plants',
+      icon: 'leaf',
+      label: 'plants.title',
+      link: '/plants',
     },
   ];
   public user$ = this.userService.getUser();
 
   constructor() {
-    addIcons({ calendar, newspaper });
+    addIcons({ leaf, newspaper });
   }
 
   async signOut(): Promise<void> {

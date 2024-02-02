@@ -1,5 +1,6 @@
 import { DatePipe, NgFor, UpperCasePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import { PlantsService } from '@plants-app/plants';
 import { Plant } from '../models/plant.interface';
 
 @Component({
@@ -11,6 +12,12 @@ import { Plant } from '../models/plant.interface';
   imports: [ NgFor, DatePipe, UpperCasePipe ],
 })
 export class PlantCardItemComponent {
+  private plantService = inject(PlantsService);
+  
   @Input({ required: true }) plant: Plant | undefined;
+
+  navigateToPlantDetails(plant: Plant): void {
+    this.plantService.navigateToPlantDetails(plant);
+  }
 
 }

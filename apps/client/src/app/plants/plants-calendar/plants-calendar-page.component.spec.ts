@@ -3,11 +3,11 @@ import { UserService } from '@plants-app/auth';
 import { getTranslocoTestingModule } from '@plants-app/shared';
 import { of } from 'rxjs';
 
-import { CalendarPage } from './calendar.page';
+import { PlantsCalendarPage } from './plants-calendar-page.component';
 
 describe('CalendarPage', () => {
-  let component: CalendarPage;
-  let fixture: ComponentFixture<CalendarPage>;
+  let component: PlantsCalendarPage;
+  let fixture: ComponentFixture<PlantsCalendarPage>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
@@ -24,7 +24,7 @@ describe('CalendarPage', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CalendarPage);
+    fixture = TestBed.createComponent(PlantsCalendarPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

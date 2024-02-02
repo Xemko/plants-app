@@ -11,14 +11,14 @@ import {
 import { addIcons } from 'ionicons';
 import { caretDownCircle, caretUpCircle } from 'ionicons/icons';
 import { Observable } from 'rxjs';
-import { CalendarResolvedData } from './calendar.routes';
+import { CalendarResolvedData } from './plants-calendar.routes';
 import { DateSelectorComponent } from './date-selector/date-selector.component';
 import { CalendarDay, CalendarSelectedDay } from './models/calendar.interface';
 
 @Component({
-  selector: 'app-calendar',
-  templateUrl: 'calendar.page.html',
-  styleUrls: [ 'calendar.page.scss' ],
+  selector: 'app-plants-calendar',
+  templateUrl: 'plants-calendar-page.component.html',
+  styleUrls: [ 'plants-calendar-page.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -27,7 +27,7 @@ import { CalendarDay, CalendarSelectedDay } from './models/calendar.interface';
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
-export class CalendarPage {
+export class PlantsCalendarPage {
   private userService = inject(UserService);
 
   @Input({ required: true }) public data: CalendarResolvedData | null = null;

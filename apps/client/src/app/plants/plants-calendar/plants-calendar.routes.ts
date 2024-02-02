@@ -24,7 +24,7 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('../calendar/calendar.page').then((m) => m.CalendarPage),
+      import('./plants-calendar-page.component').then((m) => m.PlantsCalendarPage),
     providers: [ PlantsService ],
     resolve: {
       data: calendarDataResolver
