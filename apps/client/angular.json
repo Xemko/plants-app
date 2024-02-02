@@ -33,6 +33,7 @@
             ],
             "styles": [
               "src/theme/page-layout.scss",
+              "src/theme/typography.scss",
               "src/theme/variables.scss",
               "src/global.scss"
             ],
@@ -114,6 +115,7 @@
             ],
             "styles": [
               "src/theme/page-layout.scss",
+              "src/theme/typography.scss",
               "src/theme/variables.scss",
               "src/global.scss"
             ],

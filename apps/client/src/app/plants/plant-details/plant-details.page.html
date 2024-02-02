@@ -1,0 +1,49 @@
+@if (data?.plant; as plant) {
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title class="ion-text-center">{{ plant.name }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content [fullscreen]="true" class="ion-padding">
+    <ion-header collapse="condense" class="ion-margin-bottom">
+      <ion-toolbar>
+        <ion-title size="large">
+          <ion-title class="ion-text-center">{{ plant.name }}</ion-title>
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+ 
+    <img 
+      [src]="plant.image" 
+      [alt]="plant.name" 
+      class="plant-image"
+    >
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-margin-bottom ion-text-center font-weight-bold">{{ plant.nextWatering[0] | date: 'HH:mm a' : 'GMT' }}</ion-card-title>
+        <div class="next-watering-container ion-text-center">
+          @for (nextDate of plant.nextWatering; track nextDate; let isLast = $last) {
+            <span class="next-watering-date">{{ (nextDate | date: 'E' | uppercase) + (isLast ? '' : ' - ')}}</span>
+          }
+        </div>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <div class="plant-actions-container ion-margin-top ion-margin-bottom">
+          @for (action of plantActions; track action.id) {
+            <ion-button color="light" class="plant-action-item">
+              <ion-icon slot="start" size="large" [name]="action.icon"></ion-icon>
+              <span class="plant-action-text">{{ action.id | uppercase }}</span>
+            </ion-button>
+          }
+        </div>
+
+        <h2 class="font-weight-bold">{{ 'plant.about' | transloco | uppercase }}</h2>
+        <div class="ion-margin-top">{{ plant.description }}</div>
+      </ion-card-content>
+    </ion-card>
+    
+  </ion-content>
+}

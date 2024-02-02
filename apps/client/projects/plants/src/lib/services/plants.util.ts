@@ -1,10 +1,24 @@
 import { areLocaleDatesEqual } from '@plants-app/shared';
 import { Plant, PlantsByRoomMap } from '../models/plant.interface';
+import { PLANT_ACTIONS, PlantAction } from '../models/plant-action.model';
 
-export const normalizePlants = (plants: Plant[]): Plant[] => plants.map(plant => ({
+export const normalizePlants = (plants: Plant[]): Plant[] => 
+  plants.map(plant => normalizePlant(plant));
+
+export const normalizePlant = (plant: Plant): Plant => ({
   ...plant,
-  nextWatering: plant.nextWatering.map(date => new Date(date)),
-}));
+  nextWatering: plant.nextWatering?.map(date => new Date(date)),
+  actions: normalizePlantActions(plant.actions),
+});
+
+export const normalizePlantActions = (actions: PlantAction[]): PlantAction[] =>
+  actions?.reduce((acc, action) => {
+    const plantAction = PLANT_ACTIONS.find(({ id }) => id === String(action));
+    if (plantAction) {
+      acc.push(plantAction);
+    }
+    return acc;
+  }, [] as PlantAction[])
 
 export const mapToPlantsByRoom = (plants: Plant[]): PlantsByRoomMap => {
   return plants.reduce((acc, plant) => {

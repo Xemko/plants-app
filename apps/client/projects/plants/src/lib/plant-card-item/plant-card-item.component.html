@@ -1,11 +1,17 @@
-<div class="plant-card-item">
-  <div>
-    <img [src]="plant?.image" [alt]="plant?.name" class="plant-img">
+@if (plant) {
+  <div class="plant-card-item">
+    <div (click)="navigateToPlantDetails(plant)">
+      <img 
+        [src]="plant.image" 
+        [alt]="plant.name" 
+        class="plant-img"
+      >
+    </div>
+    <h5>{{ plant.nextWatering[0] | date: 'HH:mm a' : 'GMT' }}</h5>
+    @for (nextDate of plant.nextWatering; track nextDate; let isLast = $last) {
+      <small class="next-watering-date">{{ (nextDate | date: 'E' | uppercase) + (isLast ? '' : ',')}} </small>
+    }
+    <div class="buttons-container-space-around ion-margin-top">
+    </div>
   </div>
-  <h5>{{ plant?.nextWatering?.[0] | date: 'HH:mm a' : 'GMT' }}</h5>
-  @for (nextDate of plant?.nextWatering; track nextDate; let isLast = $last) {
-    <small class="next-watering-date">{{ (nextDate | date: 'E' | uppercase) + (isLast ? '' : ',')}} </small>
-  }
-  <div class="buttons-container-space-around ion-margin-top">
-  </div>
-</div>
+}
